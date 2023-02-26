@@ -1,0 +1,39 @@
+.timer {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.timer .time {
+  border: 1px solid #aaaaaa;
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.timer.over .time {
+  color: #b61f1f;
+  border-color: #b61f1f;
+}
+
+.mdc-linear-progress {
+  height: 10px;
+}
+
+::ng-deep .mdc-linear-progress__bar-inner {
+  border-top-width: 10px !important;
+}
+
+.mat-mdc-progress-bar {
+  background-color: #36b61f20;
+  --mdc-linear-progress-active-indicator-color: #36b61f;
+}
+.timer.over .mat-mdc-progress-bar {
+  background-color: #b61f1f20;
+  --mdc-linear-progress-active-indicator-color: #b61f1f;
+}

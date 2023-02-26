@@ -1,0 +1,4 @@
+<div class="timer" [ngClass]="{over: overTime}">
+  <div class="time">{{formatTime(remainingTime)}}</div>
+  <mat-progress-bar mode="determinate" [value]="elapsedTime"></mat-progress-bar>
+</div>
