@@ -6,8 +6,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit {
-  elapsedTime = 0;
-
   @Input() maxInSeconds: number;
   @Input() stopOnZero = true;
   @Output() onChange = new EventEmitter<number>();
@@ -18,7 +16,7 @@ export class TimerComponent implements OnInit {
   remainingTime: number;
   overTime: boolean;
   timer: ReturnType<typeof setInterval> | undefined;
-
+  elapsedTime: number;
 
   ngOnInit() {
     // this.start();
@@ -31,6 +29,7 @@ export class TimerComponent implements OnInit {
     this.startTime = now();
     this.endTime = now() + max * 1000;
     this.remainingTime = max;
+    this.elapsedTime = 0;
 
     this.timer = setInterval(() => {
       this.remainingTime = Math.round((this.endTime - now()) / 1000);

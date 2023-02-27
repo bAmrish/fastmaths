@@ -1,0 +1,69 @@
+<mat-card class="paper-container">
+  <mat-card-content>
+    <div class="paper">
+      <div [ngClass]="{'hidden':started}" class="start-container">
+        <h3>Click the Start button below to begin your questionnaire</h3>
+        <button mat-raised-button color="primary" (click)="start()">Start</button>
+      </div>
+      <form
+        class="questions-container"
+        [ngClass]="{'hidden':!started}"
+      >
+        <h3 class="heading">Solve the following questions</h3>
+        <app-timer
+          [maxInSeconds]="totalTime"
+          [stopOnZero]="true" #timer
+          (onFinish)="timerComplete()"
+        ></app-timer>
+        <div class="questions">
+          <div class="question-container" *ngFor="let question of questions">
+            <div class="question">
+              <div class="question-row">
+                <label [for]="question.id" class="first operand token">{{question.firstNumber}}</label>
+                <label [for]="question.id" class="operator token"> {{getOperatorSymbol(question.operator)}} </label>
+                <label [for]="question.id" class="second operand token">{{question.secondNumber}}</label>
+                <label [for]="question.id" class="operator token"> = </label>
+              </div>
+              <div class="answer-row">
+                <input [disabled]="completed" [(ngModel)]="question.answer" [name]="question.id" [id]="question.id"
+                       type="number" class="answer input"/>
+              </div>
+
+              <div class="check-row correct" *ngIf="question.answered && question.isCorrect">
+                <mat-icon fontIcon="check"></mat-icon>
+              </div>
+
+              <div class="check-row incorrect" *ngIf="question.answered && !question.isCorrect">
+                <mat-icon fontIcon="close"></mat-icon>
+              </div>
+            </div>
+
+            <div class="correct-answer" *ngIf="question.answered && !question.isCorrect">
+              correct answer is {{question.solution}}
+            </div>
+
+          </div>
+        </div>
+
+        <div class="actions-row">
+          <button *ngIf="started && !completed"
+                  mat-raised-button
+                  color="primary"
+                  type="submit"
+                  (click)="checkAnswers()"
+          >Go
+          </button>
+          <button *ngIf="completed"
+                  mat-raised-button
+                  color="primary"
+                  type="submit"
+                  (click)="start()"
+          >New Paper
+          </button>
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+

@@ -4,17 +4,7 @@ header {
   justify-content: center;
   align-items: center;
 }
-.app-main {
-  margin: 0 auto;
-  max-width: 640px;
-  height: 100%;
-}
 
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .heading {
   display: flex;
@@ -23,75 +13,5 @@ main {
   text-align: center;
 }
 
-.start-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
 
-.question-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.question-row, .answer-row, .actions-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  justify-items: center;
-  padding: 5px;
-}
-
-.token {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  height: 36px;
-}
-
-.answer-row input {
-  width: 50px;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  padding: 10px;
-  text-align: center;
-
-  &[disabled] {
-    background: #aaaaaa20;
-  }
-}
-
-.check-row.incorrect {
-  color: #b61f1f;
-}
-
-.check-row.correct {
-  color: #36b61f;
-}
-
-.hidden {
-  display: none;
-}
-
-/***
-Below style code removes the "arrows/spinner"
-that appears in the input[type=number] control.
-*/
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
 

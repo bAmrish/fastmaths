@@ -9,11 +9,13 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {FormsModule} from "@angular/forms";
 import {TimerComponent} from "./timer/timer.component";
 import {MatCardModule} from "@angular/material/card";
+import {PaperComponent} from "./paper/paper.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent
+    TimerComponent,
+    PaperComponent
   ],
   imports: [
     BrowserModule,
