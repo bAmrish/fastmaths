@@ -11,12 +11,14 @@ import {TimerComponent} from "./timer/timer.component";
 import {MatCardModule} from "@angular/material/card";
 import {PaperComponent} from "./paper/paper.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {PaperConfigComponent} from './paper/config/config.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent,
-    PaperComponent
+    PaperComponent,
+    PaperConfigComponent
   ],
   imports: [
     BrowserModule,

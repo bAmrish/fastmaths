@@ -1,0 +1,23 @@
+.paper-selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  @media(max-width: 480px) {
+    gap: 20px;
+  }
+}
+.selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  @media(max-width: 480px) {
+    justify-content: center;
+    flex-direction: column;
+  }
+}

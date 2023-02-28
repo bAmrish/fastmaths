@@ -2,28 +2,7 @@
   <mat-card-content>
     <div class="paper">
       <div [ngClass]="{'hidden':started}" class="start-container">
-        <div class="paper-selector">
-          <h4>Select your paper configurations</h4>
-          <div class="selector time">
-            <mat-label> Select Time Per Question:</mat-label>
-
-            <mat-button-toggle-group [(ngModel)]="paperConfig.timePerQuestion">
-              <mat-button-toggle [value]="5">5 sec</mat-button-toggle>
-              <mat-button-toggle [value]="10">10 sec</mat-button-toggle>
-              <mat-button-toggle [value]="15">15 sec</mat-button-toggle>
-            </mat-button-toggle-group>
-          </div>
-          <div class="selector type">
-            <mat-label> Select Question Type:</mat-label>
-
-            <mat-button-toggle-group multiple="true" [(value)]="paperConfig.operators">
-              <mat-button-toggle value="ADD">+</mat-button-toggle>
-              <mat-button-toggle value="SUBTRACT">-</mat-button-toggle>
-              <mat-button-toggle value="MULTIPLY">×</mat-button-toggle>
-              <mat-button-toggle value="DIVIDE">÷</mat-button-toggle>
-            </mat-button-toggle-group>
-          </div>
-        </div>
+        <app-paper-config [(config)]="paperConfig"></app-paper-config>
         <button mat-raised-button color="primary" (click)="start()">Start</button>
       </div>
       <form

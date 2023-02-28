@@ -1,0 +1,22 @@
+<div class="paper-selector">
+  <h4>Setup Your Paper Configuration</h4>
+  <div class="selector time">
+    <mat-label> Select Time Per Question:</mat-label>
+
+    <mat-button-toggle-group [(ngModel)]="config.timePerQuestion" (change)="onConfigChange()">
+      <mat-button-toggle [value]="5">5 sec</mat-button-toggle>
+      <mat-button-toggle [value]="10">10 sec</mat-button-toggle>
+      <mat-button-toggle [value]="15">15 sec</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="selector type">
+    <mat-label> Select Question Type:</mat-label>
+
+    <mat-button-toggle-group multiple="true" [(value)]="config.operators" (change)="onConfigChange()">
+      <mat-button-toggle value="ADD">+</mat-button-toggle>
+      <mat-button-toggle value="SUBTRACT">-</mat-button-toggle>
+      <mat-button-toggle value="MULTIPLY">×</mat-button-toggle>
+      <mat-button-toggle value="DIVIDE">÷</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>

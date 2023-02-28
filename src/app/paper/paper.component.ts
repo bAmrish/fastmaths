@@ -20,7 +20,19 @@ export class PaperComponent {
   paperConfig: PaperConfig = {
     timePerQuestion: 10,
     operators: ['ADD', 'SUBTRACT', 'MULTIPLY', 'DIVIDE'],
-    totalQuestions: 5
+    totalQuestions: 5,
+    addition: {
+      min: 1, max: 10
+    },
+    subtraction: {
+      min: 1, max: 10
+    },
+    multiplication: {
+      min: 1, max: 10
+    },
+    division: {
+      min: 1, max: 10
+    },
   }
 
   constructor(private paperService: PaperService) {
@@ -41,9 +53,6 @@ export class PaperComponent {
     this.completed = false;
     this.totalTime = +this.paperConfig.totalQuestions * +this.paperConfig.timePerQuestion;
     this.questions = this.paperService.generateQuestions(this.paperConfig);
-    console.log(`total questions = ${this.paperConfig.totalQuestions}`);
-    console.log(`total time per questions = ${this.paperConfig.timePerQuestion}`);
-    console.log(`total time = ${this.totalTime}`);
     setTimeout(() => this.timer.start(), 1);
   }
 

@@ -3,20 +3,7 @@
   max-width: 640px;
 }
 
-.paper-selector {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.selector {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
+
 .paper {
   display: flex;
   justify-content: center;
@@ -32,7 +19,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 .questions {
   display: flex;
