@@ -3,21 +3,44 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  @media(max-width: 480px) {
-    gap: 20px;
-  }
+  gap: 20px;
 }
+
 .selector {
   display: flex;
-  flex-direction: row;
-  justify-content: start;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  align-content: center;
   flex-wrap: wrap;
   gap: 10px;
   width: 100%;
-  @media(max-width: 480px) {
-    justify-content: center;
-    flex-direction: column;
+
+  @media(min-width: 480px) {
+    justify-content: start;
+    flex-direction: row;
+    & .center-fix {
+      position: relative;
+      top: -10px;
+    }
   }
+
+  & .selector-input {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  & mat-form-field {
+    max-width: 100px;
+  }
+
+
+  @media(min-width: 480px) {
+    mat-label {
+      width: 200px;
+      text-align: right;
+    }
+  }
+
 }

@@ -12,6 +12,7 @@ import {MatCardModule} from "@angular/material/card";
 import {PaperComponent} from "./paper/paper.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {PaperConfigComponent} from './paper/config/config.component';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {PaperConfigComponent} from './paper/config/config.component';
     MatProgressBarModule,
     FormsModule,
     MatCardModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

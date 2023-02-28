@@ -19,4 +19,65 @@
       <mat-button-toggle value="DIVIDE">÷</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
+  <div class="selector" *ngIf="config.operators.indexOf('ADD') > -1">
+
+    <mat-label class="center-fix">Addition</mat-label>
+    <div class="selector-input">
+      <mat-form-field appearance="outline">
+        <mat-label>Min</mat-label>
+        <input matInput type="number"
+               [(ngModel)]="config.addition.min" (ngModelChange)="onConfigChange()"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max</mat-label>
+        <input matInput type="number"
+               [(ngModel)]="config.addition.max" (ngModelChange)="onConfigChange()"/>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="selector" *ngIf="config.operators.indexOf('SUBTRACT') > -1">
+    <mat-label class="center-fix">Subtraction</mat-label>
+    <div class="selector-input">
+      <mat-form-field appearance="outline">
+        <mat-label>Min</mat-label>
+        <input matInput type="number"
+               [(ngModel)]="config.subtraction.min" (ngModelChange)="onConfigChange()"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max</mat-label>
+        <input matInput type="number"
+               [(ngModel)]="config.subtraction.max" (ngModelChange)="onConfigChange()"/>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="selector" *ngIf="config.operators.indexOf('MULTIPLY') > -1">
+    <mat-label class="center-fix">Multiplication</mat-label>
+    <div class="selector-input">
+      <mat-form-field appearance="outline">
+        <mat-label>Min</mat-label>
+        <input matInput type="number"
+               [(ngModel)]="config.multiplication.min" (ngModelChange)="onConfigChange()"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max</mat-label>
+        <input matInput type="number"
+               [(ngModel)]="config.multiplication.max" (ngModelChange)="onConfigChange()"/>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="selector" *ngIf="config.operators.indexOf('DIVIDE') > -1">
+    <mat-label class="center-fix">Division</mat-label>
+    <div class="selector-input">
+      <mat-form-field appearance="outline">
+        <mat-label>Min</mat-label>
+        <input matInput type="number"
+               [(ngModel)]="config.division.min" (ngModelChange)="onConfigChange()"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max</mat-label>
+        <input matInput type="number"
+               [(ngModel)]="config.division.max" (ngModelChange)="onConfigChange()"/>
+      </mat-form-field>
+    </div>
+  </div>
 </div>
