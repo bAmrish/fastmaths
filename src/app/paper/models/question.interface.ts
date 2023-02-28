@@ -1,4 +1,4 @@
-export type Operator = 'ADD' | 'SUBTRACT' | 'MULTIPLY' | 'DIVIDE';
+import {Operator} from "./operator.type";
 
 export interface Question {
   id: string;

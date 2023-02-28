@@ -1,14 +1,30 @@
 .paper-container {
   margin: 0 auto;
   max-width: 640px;
-  height: 100%;
 }
 
+.paper-selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
 .paper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  & form {
+    width: 100%;
+  }
 }
 
 .start-container {
