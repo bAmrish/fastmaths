@@ -1,10 +1,38 @@
-import {Question} from "../models/question.interface";
-import {UtilService} from "./util.service";
-import {Injectable} from "@angular/core";
-import {PaperConfig} from "../models/paper-config.interface";
+import {Question} from '../models/question.interface';
+import {UtilService} from './util.service';
+import {Injectable} from '@angular/core';
+import {PaperConfig} from '../models/paper-config.interface';
+import {Paper} from '../models/paper.interface';
+import {StorageService} from '../../storage/storage.service';
 
 @Injectable({providedIn: 'root'})
 export class PaperService {
+
+  constructor(private storage: StorageService) {
+  }
+
+  new(configId: string): Paper {
+    const config: PaperConfig = this.storage.get(configId);
+    const id = UtilService.uuid();
+    const name = config.name;
+    const started = false;
+    const completed = false;
+    const totalQuestions = config.totalQuestions;
+    const totalTime = totalQuestions * config.timePerQuestion;
+    const questions = this.generateQuestions(config);
+    const createdOn = new Date();
+    const modifiedOn = new Date();
+
+    const paper = {
+      id, configId, name,
+      started, completed,
+      questions, totalQuestions, totalTime,
+      createdOn, modifiedOn
+    }
+
+    this.storage.save(paper.id, paper);
+    return paper;
+  }
 
   generateQuestions(config: PaperConfig): Question[] {
     let questions: Question[] = [];
@@ -12,16 +40,16 @@ export class PaperService {
       const opSelector = UtilService.getRandomInt(0, config.operators.length - 1)
       const operator = config.operators[opSelector];
       switch (operator) {
-        case "ADD":
+        case 'ADD':
           questions.push(this.newAdditionQuestion(config));
           break;
-        case "SUBTRACT":
+        case 'SUBTRACT':
           questions.push(this.newSubtractionQuestion(config));
           break;
-        case "MULTIPLY":
+        case 'MULTIPLY':
           questions.push(this.newMultiplicationQuestion(config));
           break;
-        case "DIVIDE":
+        case 'DIVIDE':
           questions.push(this.newDivisionQuestion(config));
           break;
       }

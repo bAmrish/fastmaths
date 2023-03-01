@@ -1,3 +1,20 @@
+.error-message {
+  color: #f44336;
+  font-size: 0.8rem;
+}
+
+.loading-error {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  & .error-message {
+    text-align: left;
+    font-size: 1.1rem;
+  }
+}
+
 .paper-container {
   margin: 0 auto;
   max-width: 640px;
@@ -14,13 +31,7 @@
   }
 }
 
-.start-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
+
 .questions {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,8 @@
 import {Operator} from "./operator.type";
 
-export class PaperConfig {
+export interface PaperConfig {
+  id: string;
+  name: string;
   timePerQuestion: number;
   operators: Operator[];
   totalQuestions: number;
@@ -16,4 +18,6 @@ export class PaperConfig {
   division: {
     min: number, max: number
   };
+  createdOn: Date;
+  modifiedOn?: Date;
 }

@@ -1,0 +1,28 @@
+mat-card {
+  max-width: 640px;
+  margin: auto;
+}
+.error-message {
+  color: #f44336;
+  font-size: 0.8rem;
+}
+
+.loading-error {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  & .error-message {
+    text-align: left;
+    font-size: 1.1rem;
+  }
+}
+
+.start-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}

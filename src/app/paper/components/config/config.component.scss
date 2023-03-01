@@ -1,0 +1,109 @@
+mat-card {
+  max-width: 640px;
+  margin: auto;
+}
+.error-message {
+  color: #f44336;
+  font-size: 0.8rem;
+}
+
+.save-message {
+  border: 1px solid #36b61f;
+  border-radius: 5px;
+  padding: 5px 10px;
+  animation: fadeOut 5s;
+  .success {
+    color: #36b61f;
+  }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.loading-error {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  & .error-message {
+    text-align: left;
+    font-size: 1.1rem;
+  }
+}
+.validation-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & .center-fix {
+    position: relative;
+    top: -20px;
+  }
+  @media(min-width: 480px) {
+    align-items: baseline;
+  }
+}
+
+.paper-selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+
+  @media(min-width: 480px) {
+    justify-content: start;
+    flex-direction: row;
+    & .center-fix {
+      position: relative;
+      top: -10px;
+    }
+  }
+
+  & .selector-input {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+  }
+
+  & mat-form-field.numeric {
+    max-width: 100px;
+  }
+
+
+  @media(min-width: 480px) {
+    mat-label {
+      width: 200px;
+      text-align: right;
+    }
+  }
+
+  mat-button-toggle-group.invalid {
+    border-color: #f44336;
+  }
+
+}
+
+
+.actions-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
