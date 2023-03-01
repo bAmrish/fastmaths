@@ -11,18 +11,21 @@ import {TimerComponent} from "./timer/timer.component";
 import {MatCardModule} from "@angular/material/card";
 import {SolverComponent} from "./paper/components/solver/solver.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import {PaperConfigComponent} from './paper/components/config/config.component';
+import {EditConfigComponent} from './paper/components/config/edit/edit.component';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {NewPaperComponent} from './paper/components/new/new.component';
 import {NotFoundComponent} from './NotFoundComponent/not-found.component';
+import {ConfigsComponent} from './paper/components/config/configs.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent,
     SolverComponent,
-    PaperConfigComponent,
+    EditConfigComponent,
+    ConfigsComponent,
     NewPaperComponent,
     NotFoundComponent
   ],
@@ -37,7 +40,8 @@ import {NotFoundComponent} from './NotFoundComponent/not-found.component';
     MatCardModule,
     MatButtonToggleModule,
     NoopAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

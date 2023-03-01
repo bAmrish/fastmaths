@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {StorageService} from './storage/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,9 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'dofast';
+
+  constructor(storageService: StorageService) {
+    storageService.initialize();
+  }
 }
 

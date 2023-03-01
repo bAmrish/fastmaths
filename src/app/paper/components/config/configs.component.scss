@@ -1,0 +1,20 @@
+table {
+  width: 100%;
+}
+
+td.mat-column-name {
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: end;
+  align-items: center;
+}
+
+.actions-header {
+  display: flex;
+  justify-content: end;
+}

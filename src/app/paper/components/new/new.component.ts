@@ -23,26 +23,32 @@ export class NewPaperComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const configId = params['config'];
-      if(!configId || configId.trim() === '') {
+      if (!configId || configId.trim() === '') {
         this.hasError = true;
         return
       }
 
-      this.paperConfig = this.storage.get(configId);
-      if(!this.paperConfig) {
+      const paperConfig = this.storage.getConfig(configId);
+      if (!paperConfig) {
         this.hasError = true;
+        return;
       }
+      this.paperConfig = paperConfig;
     })
   }
 
   start() {
     const paper = this.paperService.new(this.paperConfig.id);
+    if (!paper) {
+      this.hasError = true;
+      return;
+    }
     this.router.navigate(['..', paper.id, 'solve'], {
       relativeTo: this.route
     }).then();
   }
 
-  onCreateNew(){
+  onCreateNew() {
     this.router.navigate(['../..', 'config', 'new'], {
       relativeTo: this.route
     }).then();

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {PaperConfig} from '../../models/paper-config.interface';
-import {StorageService} from '../../../storage/storage.service';
+import {PaperConfig} from '../../../models/paper-config.interface';
+import {StorageService} from '../../../../storage/storage.service';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
-import {Operator} from '../../models/operator.type';
-import {UtilService} from '../../services/util.service';
+import {Operator} from '../../../models/operator.type';
+import {UtilService} from '../../../services/util.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 type FormType = 'New' | 'Edit' | 'Error'
@@ -36,10 +36,10 @@ class Message {
 
 @Component({
   selector: 'app-paper-config',
-  templateUrl: './config.component.html',
-  styleUrls: ['./config.component.scss']
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class PaperConfigComponent implements OnInit {
+export class EditConfigComponent implements OnInit {
   config: PaperConfig;
   saveMessage: Message | null = null;
 
@@ -84,9 +84,10 @@ export class PaperConfigComponent implements OnInit {
         this.setupForm(defaultConfig);
       } else {
         this.type = 'Edit';
-        const config = this.storage.get(id);
+        const config = this.storage.getConfig(id);
         if (!config) {
           this.type = 'Error'
+          return
         }
         this.setupForm(config);
       }
@@ -121,7 +122,7 @@ export class PaperConfigComponent implements OnInit {
         this.config.id = UtilService.uuid();
       }
       this.config.modifiedOn = new Date();
-      this.storage.save(this.config.id, this.config);
+      this.storage.saveConfig(this.config);
 
       this.showSaveMessage();
 
@@ -154,7 +155,7 @@ export class PaperConfigComponent implements OnInit {
   }
 
   navigateToNewPaper() {
-    this.router.navigate(['../../paper/new'],
+    this.router.navigate(['../../new'],
       {relativeTo: this.route, queryParams: {config: this.config.id}}
     ).then();
   }

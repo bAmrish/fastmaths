@@ -29,13 +29,13 @@ export class SolverComponent implements OnInit {
         this.hasError = true;
         return;
       }
-      this.paper = this.storage.get(paperId);
+      const paper = this.storage.getPaper(paperId);
 
-      if (!this.paper) {
+      if (!paper) {
         this.hasError = true;
         return;
       }
-
+      this.paper = paper;
       this.start();
 
     })
@@ -56,7 +56,7 @@ export class SolverComponent implements OnInit {
     setTimeout(() => this.timer.start(), 1);
   }
 
-  onNewConfig(){
+  onNewConfig() {
     this.router.navigate(['../..', 'config', 'new'], {
       relativeTo: this.route
     }).then();
@@ -78,7 +78,7 @@ export class SolverComponent implements OnInit {
       question.isCorrect = question.answer === question.solution;
       question.answered = true;
     })
-    this.storage.save(this.paper.id, this.paper);
+    this.storage.savePaper(this.paper);
   }
 
   getOperatorSymbol(operator: Operator): string {

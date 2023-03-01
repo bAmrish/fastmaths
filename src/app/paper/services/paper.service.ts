@@ -11,8 +11,11 @@ export class PaperService {
   constructor(private storage: StorageService) {
   }
 
-  new(configId: string): Paper {
-    const config: PaperConfig = this.storage.get(configId);
+  new(configId: string): Paper | null {
+    const config: PaperConfig | null= this.storage.getConfig(configId);
+    if(!config) {
+      return null;
+    }
     const id = UtilService.uuid();
     const name = config.name;
     const started = false;
@@ -30,8 +33,12 @@ export class PaperService {
       createdOn, modifiedOn
     }
 
-    this.storage.save(paper.id, paper);
+    this.storage.savePaper(paper);
     return paper;
+  }
+
+  getAllConfigs() {
+    return this.storage.getAllConfigs();
   }
 
   generateQuestions(config: PaperConfig): Question[] {

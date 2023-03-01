@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {SolverComponent} from './paper/components/solver/solver.component';
-import {PaperConfigComponent} from './paper/components/config/config.component';
+import {EditConfigComponent} from './paper/components/config/edit/edit.component';
 import {NewPaperComponent} from './paper/components/new/new.component';
 import {NotFoundComponent} from './NotFoundComponent/not-found.component';
+import {ConfigsComponent} from './paper/components/config/configs.component';
 
 const routes: Routes = [
   {
@@ -27,12 +28,11 @@ const routes: Routes = [
         children: [
           {
             path: ':id',
-            component: PaperConfigComponent
+            component: EditConfigComponent
           },
           {
             path: '',
-            redirectTo: 'new',
-            pathMatch: 'full',
+            component: ConfigsComponent
           }
         ]
       },
