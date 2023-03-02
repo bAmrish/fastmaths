@@ -2,13 +2,13 @@ table {
   width: 100%;
 }
 
-td.mat-column-name {
+.mat-mdc-header-cell.mat-column-actions, td.mat-column-actions {
+  padding: 0;
 }
 
 .actions {
   display: flex;
   flex-direction: row;
-  gap: 10px;
   flex-wrap: wrap;
   justify-content: end;
   align-items: center;

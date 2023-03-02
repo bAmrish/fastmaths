@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'config/new',
+        redirectTo: 'config',
         pathMatch: 'full'
       },
       {
@@ -40,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'paper/config/new',
+    redirectTo: 'paper/config',
     pathMatch: 'full'
   },
   {

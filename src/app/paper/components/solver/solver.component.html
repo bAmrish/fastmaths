@@ -1,4 +1,5 @@
 <div class="paper">
+  <!-- Loading Error Template-->
   <ng-template [ngIf]="hasError">
     <div class="loading-error">
       <div class="error-message">
@@ -13,13 +14,47 @@
       </div>
     </div>
   </ng-template>
+
+
   <ng-template [ngIf]="!hasError">
     <form class="questions-container">
+      <!-- Timer -->
       <app-timer
         [maxInSeconds]="paper.totalTime"
         [stopOnZero]="true" #timer
         (onFinish)="timerComplete()"
+        *ngIf="paper.started && !paper.completed"
       ></app-timer>
+
+      <!-- Results -->
+      <ng-template [ngIf]="paper.completed && paper.stats">
+        <div class="results">
+          <div class="stats">
+            You got
+            <span class="value">
+              {{paper.stats.correct}} / {{paper.totalQuestions}}
+            </span>
+            with
+            <span class="value">
+              {{percentage()}}%
+            </span>
+            in
+            <span class="value">
+              {{paper.stats.solveTime | appTime}}
+            </span>
+          </div>
+          <div class="message">
+            <div>
+              {{getMessage()}} &nbsp;
+            </div>
+            <div>
+              <app-stars [filled]="rating()"></app-stars>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- Question List -->
       <div class="questions">
         <div class="question-container" *ngFor="let question of paper.questions">
           <div class="question">
@@ -54,6 +89,7 @@
         </div>
       </div>
 
+      <!-- Actions row -->
       <div class="actions-row">
         <button *ngIf="paper.started && !paper.completed"
                 mat-raised-button

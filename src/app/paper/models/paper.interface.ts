@@ -9,6 +9,13 @@ export interface Paper {
   totalTime: number;
   started: boolean;
   completed: boolean;
+  stats?: {
+    correct: number;
+    incorrect: number;
+    solveTime: number;
+    percentage: number;
+    rating?: number;
+  }
   createdOn: Date;
   modifiedOn?: Date;
 }

@@ -12,8 +12,8 @@ export class PaperService {
   }
 
   new(configId: string): Paper | null {
-    const config: PaperConfig | null= this.storage.getConfig(configId);
-    if(!config) {
+    const config: PaperConfig | null = this.storage.getConfig(configId);
+    if (!config) {
       return null;
     }
     const id = UtilService.uuid();
@@ -39,6 +39,93 @@ export class PaperService {
 
   getAllConfigs() {
     return this.storage.getAllConfigs();
+  }
+
+  checkAnswers(paper: Paper, solveTime: number) {
+
+    paper.completed = true;
+
+    paper.questions.forEach((question) => {
+      question.isCorrect = question.answer === question.solution;
+      question.answered = true;
+    })
+
+    const correct = paper.questions.filter(q => q.isCorrect).length;
+    const incorrect = paper.totalQuestions - correct;
+    const percentage = (correct * 100) / paper.totalQuestions;
+    const timePerQuestion = Math.round(paper.totalTime / paper.totalQuestions)
+    const rating = this.getRating(percentage, timePerQuestion);
+    console.log(`rating: ${rating}`)
+
+    paper.stats = {correct, incorrect, solveTime, percentage, rating};
+
+    this.storage.savePaper(paper);
+    return paper;
+  }
+
+  private getRating(percentage: number, timePerQuestion: number): number {
+    console.log(`timePerQuestion: ${timePerQuestion}`)
+    switch (timePerQuestion) {
+      case 5:
+        return this.getHardRating(percentage);
+      case 10:
+        return this.getMediumRating(percentage);
+      case 15:
+        return this.getEasyRating(percentage);
+      default:
+        return -1
+    }
+  }
+
+  getEasyRating(percentage: number): number {
+    switch (true) {
+      case percentage === 100:
+        return 5;
+      case percentage >= 95 && percentage < 100:
+        return 4;
+      case percentage >= 85 && percentage < 95:
+        return 3;
+      case percentage >= 70 && percentage < 85:
+        return 2;
+      case percentage >= 60 && percentage < 70:
+        return 1;
+      default:
+        return 0;
+    }
+  }
+
+  getMediumRating(percentage: number): number {
+    switch (true) {
+      case percentage >= 95:
+        return 5;
+      case percentage >= 80 && percentage < 95:
+        return 4;
+      case percentage >= 75 && percentage < 80:
+        return 3;
+      case percentage >= 70 && percentage < 75:
+        return 2;
+      case percentage >= 60 && percentage < 70:
+        return 1;
+      default:
+        return 0;
+    }
+  }
+
+  getHardRating(percentage: number): number {
+    switch (true) {
+      case percentage >= 90:
+        return 5;
+      case percentage >= 75 && percentage < 90:
+        return 4;
+      case percentage >= 60 && percentage < 75:
+        return 3;
+      case percentage >= 50 && percentage < 60:
+        return 2;
+      case percentage >= 40 && percentage < 50:
+        return 1;
+      default:
+        return 0;
+    }
   }
 
   generateQuestions(config: PaperConfig): Question[] {

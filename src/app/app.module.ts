@@ -18,6 +18,9 @@ import {NewPaperComponent} from './paper/components/new/new.component';
 import {NotFoundComponent} from './NotFoundComponent/not-found.component';
 import {ConfigsComponent} from './paper/components/config/configs.component';
 import {MatTableModule} from '@angular/material/table';
+import {StarsComponent} from './stars/stars.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {TimeFormatPipe} from './pipes/time-format.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import {MatTableModule} from '@angular/material/table';
     EditConfigComponent,
     ConfigsComponent,
     NewPaperComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    StarsComponent,
+    TimeFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonToggleModule,
     NoopAnimationsModule,
     AppRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
