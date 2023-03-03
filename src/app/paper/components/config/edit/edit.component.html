@@ -15,7 +15,7 @@
 <ng-template [ngIf]="type !== 'Error'">
   <form [formGroup]="configForm" class="paper-selector"
         (ngSubmit)="save()">
-    <h4>Setup Your Paper Configuration</h4>
+    <h4>Paper Configuration</h4>
     <div id="save-message" class="save-message" *ngIf="saveMessage">
       <div class="success" *ngIf="saveMessage.type === 'SUCCESS'">
         {{saveMessage.message}}
@@ -28,20 +28,14 @@
           <mat-form-field appearance="outline">
             <input matInput type="text" formControlName="name"/>
           </mat-form-field>
-          <div *ngIf="configForm.invalid && submitted" class="error-message  center-fix">
-            <div *ngIf="configForm.controls.name.errors?.['required']">
-              Name is required.
-            </div>
-            <div *ngIf="configForm.controls.name.errors?.['minlength']">
-              Name must be at least 3 characters long.
-            </div>
+          <div *ngIf="showInputError()" class="error-message  center-fix">
+            Name is required <br> and should be at least 3 characters long.
           </div>
         </div>
       </div>
     </div>
     <div class="selector difficulty">
-      <mat-label> Select Paper Difficulty:</mat-label>
-
+      <mat-label> Difficulty:</mat-label>
       <mat-button-toggle-group formControlName="difficulty">
         <mat-button-toggle *ngFor="let difficulty of difficulties" [value]="difficulty">{{difficulty}}
         </mat-button-toggle>
@@ -60,88 +54,83 @@
         <button mat-button matSuffix> sec</button>
       </mat-form-field>
     </div>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Additional Settings
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="selector type">
-        <mat-label> Select Question Type:</mat-label>
-        <div class="validation-input">
-          <mat-button-toggle-group multiple="true" formControlName="operators"
-                                   [ngClass]="{
+
+    <div class="selector type">
+      <mat-label> Select Question Type:</mat-label>
+      <div class="validation-input">
+        <mat-button-toggle-group multiple="true" formControlName="operators"
+                                 [ngClass]="{
            'invalid':configForm.invalid
            && submitted
            && configForm.controls.operators.errors?.['operators']
         }">
-            <mat-button-toggle value="ADD">+</mat-button-toggle>
-            <mat-button-toggle value="SUBTRACT">-</mat-button-toggle>
-            <mat-button-toggle value="MULTIPLY">×</mat-button-toggle>
-            <mat-button-toggle value="DIVIDE">÷</mat-button-toggle>
-          </mat-button-toggle-group>
-          <div *ngIf="configForm.invalid && submitted"
-               class="error-message">
-            <div *ngIf="configForm.controls.operators.errors?.['operators']">
-              Atleast one operator must be selected.
-            </div>
+          <mat-button-toggle value="ADD">+</mat-button-toggle>
+          <mat-button-toggle value="SUBTRACT">-</mat-button-toggle>
+          <mat-button-toggle value="MULTIPLY">×</mat-button-toggle>
+          <mat-button-toggle value="DIVIDE">÷</mat-button-toggle>
+        </mat-button-toggle-group>
+        <div *ngIf="configForm.invalid && submitted"
+             class="error-message">
+          <div *ngIf="configForm.controls.operators.errors?.['operators']">
+            Atleast one operator must be selected.
           </div>
         </div>
       </div>
-      <div class="selector" *ngIf="config.operators.indexOf('ADD') > -1">
+    </div>
+    <div class="selector" *ngIf="config.operators.indexOf('ADD') > -1">
 
-        <mat-label class="center-fix">Addition</mat-label>
-        <div class="selector-input" formGroupName="addition">
-          <mat-form-field class="numeric" appearance="outline">
-            <mat-label>Min</mat-label>
-            <input matInput type="number" formControlName="min"/>
-          </mat-form-field>
-          <mat-form-field class="numeric" appearance="outline">
-            <mat-label>Max</mat-label>
-            <input matInput type="number" formControlName="max"/>
-          </mat-form-field>
-        </div>
+      <mat-label class="center-fix">Addition</mat-label>
+      <div class="selector-input" formGroupName="addition">
+        <mat-form-field class="numeric" appearance="outline">
+          <mat-label>Min</mat-label>
+          <input matInput type="number" formControlName="min"/>
+        </mat-form-field>
+        <mat-form-field class="numeric" appearance="outline">
+          <mat-label>Max</mat-label>
+          <input matInput type="number" formControlName="max"/>
+        </mat-form-field>
       </div>
-      <div class="selector" *ngIf="config.operators.indexOf('SUBTRACT') > -1">
-        <mat-label class="center-fix">Subtraction</mat-label>
-        <div class="selector-input" formGroupName="subtraction">
-          <mat-form-field class="numeric" appearance="outline">
-            <mat-label>Min</mat-label>
-            <input matInput type="number" formControlName="min"/>
-          </mat-form-field>
-          <mat-form-field class="numeric" appearance="outline">
-            <mat-label>Max</mat-label>
-            <input matInput type="number" formControlName="max"/>
-          </mat-form-field>
-        </div>
+    </div>
+    <div class="selector" *ngIf="config.operators.indexOf('SUBTRACT') > -1">
+      <mat-label class="center-fix">Subtraction</mat-label>
+      <div class="selector-input" formGroupName="subtraction">
+        <mat-form-field class="numeric" appearance="outline">
+          <mat-label>Min</mat-label>
+          <input matInput type="number" formControlName="min"/>
+        </mat-form-field>
+        <mat-form-field class="numeric" appearance="outline">
+          <mat-label>Max</mat-label>
+          <input matInput type="number" formControlName="max"/>
+        </mat-form-field>
       </div>
-      <div class="selector" *ngIf="config.operators.indexOf('MULTIPLY') > -1">
-        <mat-label class="center-fix">Multiplication</mat-label>
-        <div class="selector-input" formGroupName="multiplication">
-          <mat-form-field class="numeric" appearance="outline">
-            <mat-label>Min</mat-label>
-            <input matInput type="number" formControlName="min"/>
-          </mat-form-field>
-          <mat-form-field class="numeric" appearance="outline">
-            <mat-label>Max</mat-label>
-            <input matInput type="number" formControlName="max"/>
-          </mat-form-field>
-        </div>
+    </div>
+    <div class="selector" *ngIf="config.operators.indexOf('MULTIPLY') > -1">
+      <mat-label class="center-fix">Multiplication</mat-label>
+      <div class="selector-input" formGroupName="multiplication">
+        <mat-form-field class="numeric" appearance="outline">
+          <mat-label>Min</mat-label>
+          <input matInput type="number" formControlName="min"/>
+        </mat-form-field>
+        <mat-form-field class="numeric" appearance="outline">
+          <mat-label>Max</mat-label>
+          <input matInput type="number" formControlName="max"/>
+        </mat-form-field>
       </div>
-      <div class="selector" *ngIf="config.operators.indexOf('DIVIDE') > -1">
-        <mat-label class="center-fix">Division</mat-label>
-        <div class="selector-input" formGroupName="division">
-          <mat-form-field class="numeric" appearance="outline">
-            <mat-label>Min</mat-label>
-            <input matInput type="number" formControlName="min"/>
-          </mat-form-field>
-          <mat-form-field class="numeric" appearance="outline">
-            <mat-label>Max</mat-label>
-            <input matInput type="number" formControlName="max"/>
-          </mat-form-field>
-        </div>
+    </div>
+    <div class="selector" *ngIf="config.operators.indexOf('DIVIDE') > -1">
+      <mat-label class="center-fix">Division</mat-label>
+      <div class="selector-input" formGroupName="division">
+        <mat-form-field class="numeric" appearance="outline">
+          <mat-label>Min</mat-label>
+          <input matInput type="number" formControlName="min"/>
+        </mat-form-field>
+        <mat-form-field class="numeric" appearance="outline">
+          <mat-label>Max</mat-label>
+          <input matInput type="number" formControlName="max"/>
+        </mat-form-field>
       </div>
-    </mat-expansion-panel>
+    </div>
+
     <div class="actions-row">
       <button type="submit" mat-raised-button color="primary">Save</button>
       <button mat-raised-button color="accent"

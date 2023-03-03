@@ -40,6 +40,7 @@ mat-expansion-panel {
   width: 100%;
   margin: auto 0;
 }
+
 .validation-input {
   display: flex;
   flex-direction: column;
@@ -53,6 +54,12 @@ mat-expansion-panel {
 
   @media(min-width: 480px) {
     align-items: baseline;
+  }
+}
+
+.name input {
+  @media(min-width: 480px) {
+
   }
 }
 
@@ -87,6 +94,17 @@ mat-expansion-panel {
     display: flex;
     flex-direction: row;
     gap: 10px;
+    @media (min-width: 480px) {
+      flex-grow: 1;
+      & .validation-input {
+        flex-grow: 1;
+        margin-right: 20px;
+
+        & mat-form-field {
+          width: 100%;
+        }
+      }
+    }
 
   }
 

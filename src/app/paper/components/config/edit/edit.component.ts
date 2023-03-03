@@ -45,33 +45,12 @@ export class EditConfigComponent implements OnInit {
   config: PaperConfig;
   saveMessage: Message | null = null;
 
-  configForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-    difficulty: ['Medium'],
-    totalQuestions: [10],
-    timePerQuestion: [10],
-    operators: [['ADD'], [this.validateOperators()]],
-    addition: this.fb.group({
-      min: [2],
-      max: [20],
-    }),
-    subtraction: this.fb.group({
-      min: [2],
-      max: [20],
-    }),
-    multiplication: this.fb.group({
-      min: [2],
-      max: [20],
-    }),
-    division: this.fb.group({
-      min: [2],
-      max: [20],
-    }),
-  })
+  configForm = this.buildForm();
   submitted = false;
   type: FormType;
 
   difficulties: Difficulty[] = DifficultyValues;
+
 
   constructor(private storage: StorageService,
               private fb: FormBuilder,
@@ -97,6 +76,32 @@ export class EditConfigComponent implements OnInit {
         }
         this.setupForm(config);
       }
+    })
+  }
+
+  private buildForm() {
+    return this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      difficulty: ['Medium'],
+      totalQuestions: [10],
+      timePerQuestion: [10],
+      operators: [['ADD'], [this.validateOperators()]],
+      addition: this.fb.group({
+        min: [2],
+        max: [20],
+      }),
+      subtraction: this.fb.group({
+        min: [2],
+        max: [20],
+      }),
+      multiplication: this.fb.group({
+        min: [2],
+        max: [20],
+      }),
+      division: this.fb.group({
+        min: [2],
+        max: [20],
+      }),
     })
   }
 
@@ -179,5 +184,11 @@ export class EditConfigComponent implements OnInit {
     return (control: AbstractControl): ValidationErrors | null => {
       return (control.value.length > 0) ? null : {operators: {value: control.value}};
     }
+  }
+
+  showInputError() {
+    const nameErrors = this.configForm.controls.name.errors;
+    return (this.configForm.invalid && this.submitted)
+      && (nameErrors?.['required'] || nameErrors?.['minlength'])
   }
 }
