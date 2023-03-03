@@ -19,5 +19,5 @@ export interface Paper {
     rating?: number;
   }
   createdOn: Date;
-  modifiedOn?: Date;
+  modifiedOn: Date;
 }

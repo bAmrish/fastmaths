@@ -26,7 +26,25 @@
   }
 }
 
-
+.paper-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  & .title {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  & .sub-heading {
+    font-size: 0.8rem;
+    font-style: italic;
+    font-weight: 500;
+    color: #999999;
+  }
+}
 .questions {
   display: flex;
   flex-direction: column;

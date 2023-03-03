@@ -26,6 +26,9 @@ header a, header a:active, header a:visited {
 .drop-down-nav-menu {
   display: flex;
   flex-direction: column;
+  & button {
+    text-align: left;
+  }
 }
 
 .nav-menu {

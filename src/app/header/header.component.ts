@@ -7,4 +7,9 @@ import {Component} from '@angular/core';
 })
 export class HeaderComponent {
   title = 'Fast Maths';
+  routerLinks: {text: string, command: string[]}[] = [
+    {text: 'My Tests', command: ['paper']},
+    {text: 'Take Test', command: ['paper', 'config']},
+    {text: 'Create Test', command: ['paper', 'config', 'new']},
+  ]
 }

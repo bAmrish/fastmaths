@@ -5,11 +5,8 @@
     </button>
     <mat-menu #navLinks="matMenu">
       <div class="drop-down-nav-menu">
-        <a mat-button [routerLink]="['paper', 'config']">
-          My Papers
-        </a>
-        <a mat-button [routerLink]="['paper']">
-          Solved
+        <a mat-button *ngFor="let link of routerLinks" [routerLink]="link.command" >
+          {{link.text}}
         </a>
       </div>
     </mat-menu>
@@ -19,18 +16,13 @@
       {{title}}
     </a>
     <span class="header-spacer"></span>
-    <div class="nav-menu">
-      <a class="nav-menu-item" routerLinkActive="active"
+    <div class="nav-menu" >
+      <a class="nav-menu-item"
+         *ngFor="let link of routerLinks"
+         [routerLink]="link.command"
          [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['paper', 'config']
-      ">
-        My Papers
-      </a>
-      <a class="nav-menu-item" routerLinkActive="active"
-         [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['paper']
-         ">
-        Solved
+         routerLinkActive="active" >
+        {{link.text}}
       </a>
     </div>
     <span class="header-spacer"></span>

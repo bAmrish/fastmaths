@@ -17,6 +17,10 @@
 
 
   <ng-template [ngIf]="!hasError">
+    <div class="paper-heading">
+      <div class="title">{{paper.name}}</div>
+      <div class="sub-heading">{{getDate(paper.modifiedOn)}}</div>
+    </div>
     <form class="questions-container">
       <!-- Timer -->
       <app-timer
@@ -80,7 +84,7 @@
                 color="primary"
                 type="submit"
                 (click)="onNewPaper()"
-        >New Paper
+        >Try Again
         </button>
       </div>
     </form>
