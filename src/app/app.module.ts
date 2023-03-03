@@ -27,13 +27,17 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
 import {HeaderComponent} from './header/header.component';
+import {PapersComponent} from './paper/components/papers.component';
+import {ResultComponent} from './paper/components/result/result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TimerComponent,
+    PapersComponent,
     SolverComponent,
+    ResultComponent,
     EditConfigComponent,
     ConfigsComponent,
     NewPaperComponent,

@@ -39,6 +39,9 @@ export class PaperService {
     return paper;
   }
 
+  getAllPapers(): Paper[] {
+    return this.storage.getAllPapers();
+  }
   getAllConfigs() {
     return this.storage.getAllConfigs();
   }

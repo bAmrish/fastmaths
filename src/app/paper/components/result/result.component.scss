@@ -1,0 +1,31 @@
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  padding: 10px;
+}
+
+.results .message {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+app-stars {
+  position: relative;
+  top: -1px;
+}

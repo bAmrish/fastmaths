@@ -28,30 +28,7 @@
 
       <!-- Results -->
       <ng-template [ngIf]="paper.completed && paper.stats">
-        <div class="results">
-          <div class="stats">
-            You got
-            <span class="app-token">
-              {{paper.stats.correct}} / {{paper.totalQuestions}}
-            </span>
-            with
-            <span class="app-token">
-              {{percentage()}}%
-            </span>
-            in
-            <span class="app-token">
-              {{paper.stats.solveTime | appTime}}
-            </span>
-          </div>
-          <div class="message">
-            <div>
-              {{getMessage()}} &nbsp;
-            </div>
-            <div>
-              <app-stars [filled]="rating()"></app-stars>
-            </div>
-          </div>
-        </div>
+        <app-paper-result [paper]="paper"></app-paper-result>
       </ng-template>
 
       <!-- Question List -->

@@ -1,0 +1,44 @@
+<div class="papers">
+  <div class="heading">
+    <div class="message">Your Tests</div>
+    <div class="actions">
+      <a [routerLink]="['config']" mat-stroked-button color="accent">Take A Test</a>
+    </div>
+  </div>
+  <mat-accordion class="panels">
+    <mat-expansion-panel *ngFor="let paper of papers " class="panel mat-elevation-z">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="panel-title">
+            <div class="main">
+              <div class="name">{{paper.name}}</div>
+              <div class="sub">{{getDate(paper.createdOn) }}</div>
+            </div>
+          </div>
+          <div class="info">
+
+
+            <ng-template [ngIf]="paper.completed">
+              <a mat-button color="primary" [routerLink]="[paper.id, 'solve']">
+                View
+              </a>
+            </ng-template>
+            <ng-template [ngIf]="!paper.completed">
+              <a mat-button color="accent" [routerLink]="[paper.id, 'solve']">
+                Solve
+              </a>
+            </ng-template>
+
+            <!--          <span class="percent app-token">{{paper.stats?.percentage}}%</span>-->
+          </div>
+        </mat-panel-title>
+        <!--      <mat-panel-description>-->
+        <!--        <div class="date">-->
+        <!--          {{getDate(paper.createdOn) }}-->
+        <!--        </div>-->
+        <!--      </mat-panel-description>-->
+      </mat-expansion-panel-header>
+      <app-paper-result [paper]="paper"></app-paper-result>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

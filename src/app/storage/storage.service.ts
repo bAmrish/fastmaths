@@ -41,4 +41,14 @@ export class StorageService {
   getPaper(id: string): Paper | null {
     return this.papers[id] ? this.papers[id] : null
   }
+
+  getAllPapers(): Paper[] {
+    const papers: Paper[] = [];
+    for (let key in this.papers) {
+      if (this.papers.hasOwnProperty(key)) {
+        papers.push(this.papers[key])
+      }
+    }
+    return papers;
+  }
 }

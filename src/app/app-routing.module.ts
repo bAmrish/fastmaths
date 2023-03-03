@@ -5,6 +5,7 @@ import {EditConfigComponent} from './paper/components/config/edit/edit.component
 import {NewPaperComponent} from './paper/components/new/new.component';
 import {NotFoundComponent} from './NotFoundComponent/not-found.component';
 import {ConfigsComponent} from './paper/components/config/configs.component';
+import {PapersComponent} from './paper/components/papers.component';
 
 const routes: Routes = [
   {
@@ -12,8 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'config',
-        pathMatch: 'full'
+        component: PapersComponent
       },
       {
         path: 'new',
@@ -40,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'paper/config',
+    redirectTo: 'paper',
     pathMatch: 'full'
   },
   {
