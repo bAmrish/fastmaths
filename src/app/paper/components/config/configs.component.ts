@@ -3,6 +3,7 @@ import {PaperService} from '../../services/paper.service';
 import {PaperConfig} from '../../models/paper-config.interface';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteConfirmation} from '../../../dialog/delete-confirmation-dialog.component';
+import formatRelative from 'date-fns/formatRelative';
 
 @Component({
   selector: 'app-configs',
@@ -17,8 +18,11 @@ export class ConfigsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.configs = this.paperService.getAllConfigs()
+      .sort((a, b) =>
+        new Date(b.createdOn).getTime() - new Date(a.createdOn).getTime()
+      );
 
-    this.configs = this.paperService.getAllConfigs();
   }
 
   confirmDelete(config: PaperConfig): void {
@@ -35,4 +39,11 @@ export class ConfigsComponent implements OnInit {
       }
     });
   }
+
+  getDate(date: Date) {
+    const d = new Date(date);
+    const b = new Date();
+    return formatRelative(d, b)
+  }
+
 }

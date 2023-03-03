@@ -6,6 +6,24 @@ table {
   padding: 0;
 }
 
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  flex-grow: 1;
+  & .name {
+    flex-grow: 1;
+  }
+  & .description {
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
+  }
+}
+
 .actions {
   display: flex;
   flex-direction: row;

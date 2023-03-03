@@ -18,13 +18,12 @@ export class PapersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.papers = this.paperService.getAllPapers()
-    this.papers = this.papers.sort((a, b) => {
-        const n1 = new Date(a.createdOn).getMilliseconds();
-        const n2 = new Date(b.createdOn).getMilliseconds();
-        return n2 - n1;
-      }
-    )
+    this.papers = this.paperService
+      .getAllPapers()
+      .sort((a, b) =>
+        new Date(b.createdOn).getTime() - new Date(a.createdOn).getTime()
+      );
+
   }
 
   getDate(date: Date) {

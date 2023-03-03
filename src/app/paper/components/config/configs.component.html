@@ -3,7 +3,12 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Available Papers</th>
-      <td mat-cell *matCellDef="let config"> {{config.name}} </td>
+      <td mat-cell *matCellDef="let config">
+        <div class="title">
+          <div class="name">{{config.name}}</div>
+          <div class="description">{{getDate(config.createdOn)}}</div>
+        </div>
+      </td>
     </ng-container>
 
     <!-- Actions Column -->
