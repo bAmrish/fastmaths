@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {PaperConfig} from '../models/paper-config.interface';
 import {Paper} from '../models/paper.interface';
 import {StorageService} from '../../storage/storage.service';
+import {Difficulty} from '../models/paper-difficulty';
 
 @Injectable({providedIn: 'root'})
 export class PaperService {
@@ -18,6 +19,7 @@ export class PaperService {
     }
     const id = UtilService.uuid();
     const name = config.name;
+    const difficulty = config.difficulty;
     const started = false;
     const completed = false;
     const totalQuestions = config.totalQuestions;
@@ -27,7 +29,7 @@ export class PaperService {
     const modifiedOn = new Date();
 
     const paper = {
-      id, configId, name,
+      id, configId, name, difficulty,
       started, completed,
       questions, totalQuestions, totalTime,
       createdOn, modifiedOn
@@ -53,9 +55,7 @@ export class PaperService {
     const correct = paper.questions.filter(q => q.isCorrect).length;
     const incorrect = paper.totalQuestions - correct;
     const percentage = (correct * 100) / paper.totalQuestions;
-    const timePerQuestion = Math.round(paper.totalTime / paper.totalQuestions)
-    const rating = this.getRating(percentage, timePerQuestion);
-    console.log(`rating: ${rating}`)
+    const rating = this.getRating(percentage, paper.difficulty);
 
     paper.stats = {correct, incorrect, solveTime, percentage, rating};
 
@@ -63,17 +63,14 @@ export class PaperService {
     return paper;
   }
 
-  private getRating(percentage: number, timePerQuestion: number): number {
-    console.log(`timePerQuestion: ${timePerQuestion}`)
-    switch (timePerQuestion) {
-      case 5:
+  private getRating(percentage: number, difficulty: Difficulty): number {
+    switch (difficulty) {
+      case Difficulty.HARD:
         return this.getHardRating(percentage);
-      case 10:
+      case Difficulty.MEDIUM:
         return this.getMediumRating(percentage);
-      case 15:
+      case Difficulty.EASY:
         return this.getEasyRating(percentage);
-      default:
-        return -1
     }
   }
 

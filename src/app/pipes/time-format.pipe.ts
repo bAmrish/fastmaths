@@ -7,11 +7,11 @@ export class TimeFormatPipe implements PipeTransform {
     if (value < 60) {
       return `${s} s`
     }
-    const m = (value - s) % 60;
+    const m = ((value - s) / 60) % 60;
     if (value < 3600) {
       return `${m} m ${s} s`
     }
-    const h = value - m * 60 - s;
+    const h = (value - (m * 60) - s) / 3600
     return `${h} h ${m} m ${s} s`
   }
 

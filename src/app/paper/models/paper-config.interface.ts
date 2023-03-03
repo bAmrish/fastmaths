@@ -1,8 +1,10 @@
 import {Operator} from "./operator.type";
+import {Difficulty} from './paper-difficulty';
 
 export interface PaperConfig {
   id: string;
   name: string;
+  difficulty: Difficulty;
   timePerQuestion: number;
   operators: Operator[];
   totalQuestions: number;

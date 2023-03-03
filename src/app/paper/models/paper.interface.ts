@@ -1,9 +1,11 @@
 import {Question} from './question.interface';
+import {Difficulty} from './paper-difficulty';
 
 export interface Paper {
   id: string;
   configId: string;
   name: string;
+  difficulty: Difficulty;
   questions: Question[];
   totalQuestions: number;
   totalTime: number;

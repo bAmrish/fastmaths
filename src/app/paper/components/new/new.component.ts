@@ -13,6 +13,7 @@ export class NewPaperComponent implements OnInit {
 
   paperConfig: PaperConfig;
   hasError = false;
+  totalTime = 0;
 
   constructor(private paperService: PaperService,
               private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class NewPaperComponent implements OnInit {
         return;
       }
       this.paperConfig = paperConfig;
+      this.totalTime = this.paperConfig.totalQuestions * this.paperConfig.timePerQuestion
     })
   }
 

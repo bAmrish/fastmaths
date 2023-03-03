@@ -21,6 +21,8 @@ import {MatTableModule} from '@angular/material/table';
 import {StarsComponent} from './stars/stars.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {TimeFormatPipe} from './pipes/time-format.pipe';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import {TimeFormatPipe} from './pipes/time-format.pipe';
     NoopAnimationsModule,
     AppRoutingModule,
     MatTableModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSliderModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

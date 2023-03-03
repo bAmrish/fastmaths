@@ -15,9 +15,13 @@
 <ng-template [ngIf]="!hasError">
   <div class="start-container">
     <div class="start-message">
-      You would be answering <b>{{paperConfig.name}}</b> paper.<br/>
-      It has <b>{{paperConfig.totalQuestions}}</b> questions with totalTime of
-      <b>{{ this.paperConfig.totalQuestions * this.paperConfig.timePerQuestion}} sec.</b><br/><br/>
+      You will be solving <span class="app-token">{{paperConfig.name}}</span> paper.
+      It has <span class="app-token">{{paperConfig.totalQuestions}}</span> questions
+      with total time of
+      <span class="app-token">
+        {{ totalTime | appTime}}.
+      </span>
+      <br/><br/>
       Press the start button below to begin.
     </div>
     <button mat-raised-button color="primary" (click)="start()">Start</button>

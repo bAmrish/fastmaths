@@ -12,7 +12,11 @@ export class StarsComponent implements OnChanges {
   unfilled: number[] = [];
 
   ngOnChanges() {
-    this.filledStars = [...Array(this.filled).keys()];
+    if(this.filled < 0) {
+      this.filledStars = [];
+    } else {
+      this.filledStars = [...Array(this.filled).keys()];
+    }
     this.unfilled = [...Array(this.total - this.filled).keys()];
   }
 
