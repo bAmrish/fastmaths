@@ -10,11 +10,11 @@ table {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .actions-header {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }

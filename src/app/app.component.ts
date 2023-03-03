@@ -7,8 +7,6 @@ import {StorageService} from './storage/storage.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Fast Maths';
-
   constructor(storageService: StorageService) {
     storageService.initialize();
   }

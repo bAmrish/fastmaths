@@ -23,10 +23,15 @@ import {MatChipsModule} from '@angular/material/chips';
 import {TimeFormatPipe} from './pipes/time-format.pipe';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
+import {HeaderComponent} from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     TimerComponent,
     SolverComponent,
     EditConfigComponent,
@@ -51,7 +56,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatTableModule,
     MatChipsModule,
     MatSliderModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

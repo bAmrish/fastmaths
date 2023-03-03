@@ -1,0 +1,44 @@
+<header>
+  <mat-toolbar color="primary">
+    <button class="menu" mat-icon-button [matMenuTriggerFor]="navLinks">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #navLinks="matMenu">
+      <div class="drop-down-nav-menu">
+        <a mat-button [routerLink]="['paper', 'config']">
+          My Papers
+        </a>
+        <a mat-button [routerLink]="['paper', 'config', 'new']">
+          Solved
+        </a>
+      </div>
+    </mat-menu>
+    <div></div>
+    <a class="logo-link" routerLink="/">
+      <img class="logo-image" src="../../assets/logo/fast-maths-light.png" alt="Fast Math Logo Image"/>
+      {{title}}
+    </a>
+    <span class="header-spacer"></span>
+    <div class="nav-menu">
+      <a class="nav-menu-item" routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['paper', 'config']
+      ">
+        My Papers
+      </a>
+      <a class="nav-menu-item" routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['paper', 'config', 'new']
+         ">
+        Solved
+      </a>
+    </div>
+    <span class="header-spacer"></span>
+    <button mat-button>
+      <mat-icon>assignment_ind</mat-icon>
+      <span class="username">Admin</span>
+    </button>
+
+  </mat-toolbar>
+
+</header>
