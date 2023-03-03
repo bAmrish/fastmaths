@@ -65,11 +65,11 @@ export class PaperService {
 
   private getRating(percentage: number, difficulty: Difficulty): number {
     switch (difficulty) {
-      case Difficulty.HARD:
+      case 'Hard':
         return this.getHardRating(percentage);
-      case Difficulty.MEDIUM:
+      case 'Medium':
         return this.getMediumRating(percentage);
-      case Difficulty.EASY:
+      case 'Easy':
         return this.getEasyRating(percentage);
     }
   }

@@ -5,14 +5,14 @@ import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angul
 import {Operator} from '../../../models/operator.type';
 import {UtilService} from '../../../services/util.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Difficulty} from '../../../models/paper-difficulty';
+import {Difficulty, DifficultyValues} from '../../../models/paper-difficulty';
 
 type FormType = 'New' | 'Edit' | 'Error'
 
 const defaultConfig: PaperConfig = {
   id: '',
   name: '',
-  difficulty: Difficulty.MEDIUM,
+  difficulty: 'Medium',
   timePerQuestion: 5,
   operators: ['ADD', 'SUBTRACT', 'MULTIPLY', 'DIVIDE'],
   totalQuestions: 5,
@@ -47,7 +47,7 @@ export class EditConfigComponent implements OnInit {
 
   configForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
-    difficulty: [Difficulty.MEDIUM],
+    difficulty: ['Medium'],
     totalQuestions: [10],
     timePerQuestion: [10],
     operators: [['ADD'], [this.validateOperators()]],
@@ -70,28 +70,13 @@ export class EditConfigComponent implements OnInit {
   })
   submitted = false;
   type: FormType;
-  difficulties: { text: string, value: number }[] = [];
+
+  difficulties: Difficulty[] = DifficultyValues;
 
   constructor(private storage: StorageService,
               private fb: FormBuilder,
               private route: ActivatedRoute,
               private router: Router) {
-    this.buildDifficulties();
-  }
-
-  private buildDifficulties() {
-    const enumKeys = Object.keys(Difficulty);
-    const texts: string[] = enumKeys.filter(k => isNaN(Number(k)));
-    const values: number[] = enumKeys
-      .filter(k => !isNaN(Number(k)))
-      .map(k => Number(k));
-    values.forEach((value, index) => {
-      this.difficulties.push({
-        text: texts[index],
-        value: value
-      })
-    });
-    console.log(this.difficulties);
   }
 
   ngOnInit() {

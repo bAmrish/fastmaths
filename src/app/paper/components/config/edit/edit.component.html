@@ -43,8 +43,7 @@
       <mat-label> Select Paper Difficulty:</mat-label>
 
       <mat-button-toggle-group formControlName="difficulty">
-        <mat-button-toggle *ngFor="let difficulty of difficulties"
-                           [value]="difficulty.value">{{difficulty.text | titlecase}}
+        <mat-button-toggle *ngFor="let difficulty of difficulties" [value]="difficulty">{{difficulty}}
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>

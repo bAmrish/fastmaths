@@ -15,8 +15,9 @@
 <ng-template [ngIf]="!hasError">
   <div class="start-container">
     <div class="start-message">
-      You will be solving <span class="app-token">{{paperConfig.name}}</span> paper.
-      It has <span class="app-token">{{paperConfig.totalQuestions}}</span> questions
+      You will be solving <span class="app-token">{{paperConfig.name}}</span> paper
+      of <span class="app-token">{{paperConfig.difficulty}} </span> difficulty.
+      It has <span class="app-token">{{paperConfig.totalQuestions}} Questions</span>
       with total time of
       <span class="app-token">
         {{ totalTime | appTime}}.
