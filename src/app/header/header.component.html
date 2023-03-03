@@ -1,16 +1,9 @@
 <header>
   <mat-toolbar color="primary">
-    <button class="menu" mat-icon-button [matMenuTriggerFor]="navLinks">
+    <button class="menu" mat-icon-button (click)="onMenuClicked()">
       <mat-icon>menu</mat-icon>
     </button>
-    <mat-menu #navLinks="matMenu">
-      <div class="drop-down-nav-menu">
-        <a mat-button *ngFor="let link of routerLinks" [routerLink]="link.command" >
-          {{link.text}}
-        </a>
-      </div>
-    </mat-menu>
-    <div></div>
+
     <a class="logo-link" routerLink="/">
       <img class="logo-image" src="../../assets/logo/fast-maths-light.png" alt="Fast Math Logo Image"/>
       {{title}}

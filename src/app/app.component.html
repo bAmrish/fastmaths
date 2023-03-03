@@ -1,6 +1,21 @@
-<app-header></app-header>
-<mat-card>
-  <mat-card-content>
-    <router-outlet></router-outlet>
-  </mat-card-content>
-</mat-card>
+<div class="app-container">
+  <app-header (menuClicked)="onMenuClick()"></app-header>
+  <mat-sidenav-container  class="example-container" >
+    <mat-sidenav mode="push" position="start" #sideNav>
+      <div class="side-nav">
+        <a class="side-nav-links" *ngFor="let link of routerLinks"
+           [routerLink]="link.command" (click)="onLinkClicked()">
+          {{link.text}}
+        </a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-card>
+        <mat-card-content>
+          <router-outlet></router-outlet>
+        </mat-card-content>
+      </mat-card>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</div>
