@@ -16,7 +16,7 @@ export class StorageService {
 
   saveConfig(config: PaperConfig) {
     this.configs[config.id] = config;
-    localStorage.setItem('configs', JSON.stringify(this.configs));
+    this.saveConfigs();
   }
 
   getConfig(id: string): PaperConfig | null {
@@ -35,7 +35,7 @@ export class StorageService {
 
   savePaper(paper: Paper) {
     this.papers[paper.id] = paper;
-    localStorage.setItem('papers', JSON.stringify(this.papers));
+    this.savePapers()
   }
 
   getPaper(id: string): Paper | null {
@@ -50,5 +50,23 @@ export class StorageService {
       }
     }
     return papers;
+  }
+
+  deletePaper(paperId: string): boolean {
+    const paper = this.papers[paperId];
+    if (paper) {
+      delete this.papers[paperId];
+      this.savePapers();
+      return true;
+    }
+    return false;
+  }
+
+  private savePapers() {
+    localStorage.setItem('papers', JSON.stringify(this.papers));
+  }
+
+  private saveConfigs() {
+    localStorage.setItem('configs', JSON.stringify(this.configs));
   }
 }

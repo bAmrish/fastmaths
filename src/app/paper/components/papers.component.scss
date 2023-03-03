@@ -14,33 +14,51 @@
   box-shadow: 1px 1px 2px #aaaaaa;
 }
 
-.paper-list {
-  display: flex;
-  flex-direction: column;
-}
 .panel {
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
+
 .panel-title {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
+  gap: 5px;
   flex-grow: 1;
-  align-items: center;
    & .name {
      flex-grow: 1;
    }
+  & .description {
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
 }
+
 .main {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  & .sub {
-    font-size: 0.8rem;
-    color: #999;
-    font-style: italic;
-  }
+
 }
 
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  & .panel-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
 .percent.app-token {
   width: 30px;
   text-align: center;
@@ -52,4 +70,5 @@
 }
 mat-expansion-panel {
   border-bottom: 1px solid #aaaa;
+  overflow: visible;
 }

@@ -30,6 +30,8 @@ import {HeaderComponent} from './header/header.component';
 import {PapersComponent} from './paper/components/papers.component';
 import {ResultComponent} from './paper/components/result/result.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {DeleteConfirmation} from './dialog/delete-confirmation-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     NewPaperComponent,
     NotFoundComponent,
     StarsComponent,
-    TimeFormatPipe
+    TimeFormatPipe,
+    DeleteConfirmation
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatToolbarModule,
     MatMenuModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

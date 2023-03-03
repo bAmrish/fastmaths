@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>
+  <mat-icon>delete</mat-icon>
+  Delete {{data.type | titlecase}}?
+</h2>
+<mat-dialog-content class="dialog-container">
+  <div class="message">
+    Are you sure you want to delete <span class="name">{{data.name}}</span>?
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button color="primary" [mat-dialog-close]="true">OK</button>
+  <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
+</mat-dialog-actions>

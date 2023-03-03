@@ -42,6 +42,11 @@ export class PaperService {
   getAllPapers(): Paper[] {
     return this.storage.getAllPapers();
   }
+
+  deletePaper(paperId: string): boolean {
+    return this.storage.deletePaper(paperId);
+  }
+
   getAllConfigs() {
     return this.storage.getAllConfigs();
   }
