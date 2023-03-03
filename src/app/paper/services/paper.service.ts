@@ -47,6 +47,10 @@ export class PaperService {
     return this.storage.deletePaper(paperId);
   }
 
+  deleteConfig(configId: string): boolean {
+    return this.storage.deleteConfig(configId);
+  }
+
   getAllConfigs() {
     return this.storage.getAllConfigs();
   }

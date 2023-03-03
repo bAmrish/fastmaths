@@ -39,7 +39,6 @@ export class PapersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`result = ${result}`)
       if (result) {
         const success = this.paperService.deletePaper(paper.id);
         if (success) {

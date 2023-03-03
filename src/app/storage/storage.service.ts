@@ -62,6 +62,16 @@ export class StorageService {
     return false;
   }
 
+  deleteConfig(configId: string): boolean {
+    const config = this.configs[configId];
+    if (config) {
+      delete this.configs[configId];
+      this.saveConfigs();
+      return true;
+    }
+    return false;
+  }
+
   private savePapers() {
     localStorage.setItem('papers', JSON.stringify(this.papers));
   }
