@@ -1,0 +1,65 @@
+<div class="user-profile-container">
+  <h2>
+    <mat-icon>account_circle</mat-icon>
+    User Profile
+  </h2>
+  <form class="user-form" [formGroup]="userForm" (ngSubmit)="onSave()" #formCtrl="ngForm">
+    <div class="field">
+      <label for="username">Username</label>
+      <input [ngClass]="{'error': userNameShort || userNameRequired}" type="text" id="username" pInputText formControlName="username">
+      <small *ngIf="userNameRequired" [ngClass]="{'error': userNameRequired}">
+        Username is required
+      </small>
+      <small *ngIf="userNameShort" [ngClass]="{'error': userNameShort}">
+        Username must be at least 6 characters.
+      </small>
+    </div>
+    <div class="password field-group" *ngIf="formType === 'New'">
+      <div class="field">
+        <label for="password">Password</label>
+        <input [ngClass]="{'error': passwordShort || passwordRequired}" type="password" pInputText id="password" formControlName="password"/>
+        <small *ngIf="passwordRequired" [ngClass]="{'error': passwordRequired}">
+          Password is required
+        </small>
+        <small *ngIf="passwordShort" [ngClass]="{'error': passwordShort}">
+          Password must be at least 6 characters.
+        </small>
+      </div>
+      <div class="field">
+        <label for="confirmPassword">Confirm Password</label>
+        <input [ngClass]="{'error': confirmPasswordMatch}" type="password" pInputText id="confirmPassword" formControlName="confirmPassword"/>
+        <small *ngIf="confirmPasswordMatch" [ngClass]="{'error': confirmPasswordMatch}">
+          Password do not match
+        </small>
+      </div>
+    </div>
+    <div class="name field-group">
+      <div class="field">
+        <label for="firstName">First Name</label>
+        <input [ngClass]="{'error': firstNameRequired}" pInputText id="firstName" formControlName="firstName"/>
+        <small *ngIf="firstNameRequired" [ngClass]="{'error': firstNameRequired}">
+          First name is required
+        </small>
+      </div>
+      <div class="field">
+        <label for="lastName">Last Name</label>
+        <input [ngClass]="{'error': lastNameRequired}" pInputText id="lastName" formControlName="lastName"/>
+        <small *ngIf="lastNameRequired" [ngClass]="{'error': lastNameRequired}">
+          Last name is required
+        </small>
+      </div>
+    </div>
+
+    <div class="field">
+      <mat-radio-group formControlName="type">
+        <mat-radio-button *ngFor="let type of types" [value]="type">{{type}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

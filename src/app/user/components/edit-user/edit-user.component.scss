@@ -1,0 +1,55 @@
+.user-profile-container {
+  & h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+    & mat-icon {
+      color: #3f51b5;
+    }
+  }
+}
+
+.user-form {
+  max-width: 540px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.type {
+  display: flex;
+  align-items: center;
+  .role {
+    width: 100px;
+  }
+}
+
+// TODO: move to global styles.
+.field-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  label {
+    margin-bottom: 5px;
+  }
+  small.error {
+    color: #f44336;
+    margin-top: 5px;
+  }
+
+  input.error {
+    border-color: #f44336;
+  }
+}
+
