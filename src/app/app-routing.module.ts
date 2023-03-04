@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {SolverComponent} from './paper/components/solver/solver.component';
 import {EditConfigComponent} from './paper/components/config/edit/edit.component';
 import {NewPaperComponent} from './paper/components/new/new.component';
-import {NotFoundComponent} from './NotFoundComponent/not-found.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 import {ConfigsComponent} from './paper/components/config/configs.component';
 import {PapersComponent} from './paper/components/papers.component';
 import {EditUserComponent} from './user/components/edit-user/edit-user.component';

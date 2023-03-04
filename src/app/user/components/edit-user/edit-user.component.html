@@ -1,3 +1,13 @@
+
+<ng-template [ngIf]="this.formType === 'Error'">
+  <div class="user-profile-container">
+    <div class="p-message-error">
+      We cannot find the user you are looking for.
+    </div>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="this.formType !== 'Error'">
 <div class="user-profile-container">
   <h2>
     <mat-icon>account_circle</mat-icon>
@@ -14,7 +24,7 @@
         Username must be at least 6 characters.
       </small>
     </div>
-    <div class="password field-group" *ngIf="formType === 'New'">
+    <div class="password field-group" *ngIf="this.formType === 'New'">
       <div class="field">
         <label for="password">Password</label>
         <input [ngClass]="{'error': passwordShort || passwordRequired}" type="password" pInputText id="password" formControlName="password"/>
@@ -63,3 +73,4 @@
     </div>
   </form>
 </div>
+</ng-template>

@@ -15,7 +15,7 @@ import {EditConfigComponent} from './paper/components/config/edit/edit.component
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {NewPaperComponent} from './paper/components/new/new.component';
-import {NotFoundComponent} from './NotFoundComponent/not-found.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 import {ConfigsComponent} from './paper/components/config/configs.component';
 import {MatTableModule} from '@angular/material/table';
 import {StarsComponent} from './stars/stars.component';
@@ -37,6 +37,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     MatRadioModule,
     InputTextModule,
     PasswordModule,
-    RadioButtonModule
+    RadioButtonModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

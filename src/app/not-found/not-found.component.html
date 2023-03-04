@@ -1,0 +1,22 @@
+<p-messages severity="warn">
+  <ng-template pTemplate="">
+    <div class="not-found-container">
+      <div class="not-found-message">
+        <mat-icon>report</mat-icon>
+        <div>Sorry. We could not find what you were looking for.</div>
+      </div>
+      <div class="actions">
+        <button mat-stroked-button color="primary" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Go Back
+        </button>
+        <a mat-stroked-button [routerLink]="['/']">
+          <mat-icon>home</mat-icon>
+          Go Home
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</p-messages>
+
+

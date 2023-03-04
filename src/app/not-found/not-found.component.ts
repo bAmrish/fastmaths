@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,10 +6,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent {
-  constructor(private router: Router) {
-  }
-
-  onNewConfig() {
-    this.router.navigate(['paper', 'config', 'new']).then()
+  goBack() {
+    history.go(-1);
   }
 }

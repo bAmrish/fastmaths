@@ -12,7 +12,6 @@ export interface User {
   firstName: string;
   lastName: string
   password: string;
-  confirmPassword?: string;
   type: UserType;
   role: UserRole;
   createdOn: Date;

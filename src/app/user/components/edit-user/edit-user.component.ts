@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormType} from '../../../common/models/form-type';
-import {StorageService} from '../../../storage/storage.service';
 import {AbstractControl, FormBuilder, FormGroup, NgForm, ValidationErrors, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {User, UserRole, UserRoleValues, UserType, UserTypeValues} from '../../models/user.interface';
+import {User, UserRole, UserType, UserTypeValues} from '../../models/user.interface';
+import {UserService} from '../../services/user.service';
 
 const defaultUser: User = {
   id: '',
@@ -29,7 +29,6 @@ export class EditUserComponent implements OnInit {
   formType: FormType;
   types: UserType[];
   roles: UserRole[];
-
   userNameShort = false;
   userNameRequired = false;
   lastNameRequired = false;
@@ -37,8 +36,9 @@ export class EditUserComponent implements OnInit {
   passwordRequired = false;
   passwordShort = false;
   confirmPasswordMatch = false;
+  submitted = false;
 
-  constructor(private storage: StorageService,
+  constructor(private userService: UserService,
               private fb: FormBuilder,
               private route: ActivatedRoute,
               private router: Router) {
@@ -50,18 +50,22 @@ export class EditUserComponent implements OnInit {
       const id: string = params.get('id') || '';
       if (id === '') {
         this.formType = 'Error';
+        this.notFoundRedirect();
         return;
       }
       if (id === 'new') {
         this.formType = 'New';
-        this.user = defaultUser;
+        this.user = {...defaultUser};
       } else {
         this.formType = 'Edit';
-        const user = this.storage.getUser(id);
+        const user = this.userService.getUser(id);
         if (!user) {
+          console.warn(`unable to find user with id ${id}`)
           this.formType = 'Error'
+          this.notFoundRedirect();
           return
         }
+        this.user = user;
       }
       this.setupForm(this.user);
     })
@@ -80,23 +84,62 @@ export class EditUserComponent implements OnInit {
   }
 
   setupForm(user: User) {
+    //Do this first before you do anything else with the userform.
+    this.userForm.patchValue(user);
+
+    if (this.formType == 'Edit') {
+      this.userForm.get('username')?.disable();
+    } else {
+      this.userForm.get('username')?.enable();
+    }
+    //setup array of user types
     const types = [...UserTypeValues];
     types.splice(types.indexOf('Internal'))
     this.types = types;
-    const roles = [...UserRoleValues];
-    roles.splice(roles.indexOf('Super'))
-    this.roles = roles;
-    this.userForm.patchValue(user);
+
     this.userForm.valueChanges.subscribe(value => this.updateUser(value))
   }
 
   private updateUser(value: any): void {
+    this.user.username = value.username || '';
     this.user.firstName = value.firstName || '';
     this.user.lastName = value.lastName || '';
     this.user.type = value.type;
     this.user.role = this.getRole(this.user.type);
+    this.validateControls()
+  }
 
-    if(this.frmCtrl.submitted) {
+  private validateConfirmPassword(control: AbstractControl): ValidationErrors | null {
+    if (this.formType === 'Edit') return null;
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+    if (!password) return null;
+    return password !== confirmPassword ? {confirmPasswordMatchError: true} : null
+  }
+
+  onSave() {
+    this.submitted = true;
+    this.validateControls();
+    if (this.userForm.invalid) {
+      return;
+    }
+    const password = this.userForm.get('password')?.value;
+    this.updateUser(this.user);
+    if (this.formType === 'New') {
+      this.user = this.userService.newUser(this.user, password);
+      this.navigateToCurrentUser();
+      return;
+    }
+    this.userService.saveUser(this.user);
+  }
+
+  getRole(type: UserType): UserRole {
+    if (type === 'Parent' || type === 'Teacher') return 'Admin';
+    return 'User';
+  }
+
+  validateControls() {
+    if (this.submitted) {
       //username errors
       this.userNameRequired = this.userForm.get('username')?.errors?.['required'];
       this.userNameShort = this.userForm.get('username')?.errors?.['minlength'];
@@ -109,25 +152,17 @@ export class EditUserComponent implements OnInit {
       this.passwordRequired = this.userForm.get('password')?.errors?.['required'];
       this.passwordShort = this.userForm.get('password')?.errors?.['minlength'];
       this.confirmPasswordMatch = this.userForm.errors?.['confirmPasswordMatchError'];
+
+      //reset submitted
+      this.submitted = false;
     }
-
   }
 
-  private validateConfirmPassword(control: AbstractControl): ValidationErrors | null {
-    if (this.formType === 'Edit') return null;
-    const password = control.get('password')?.value;
-    const confirmPassword = control.get('confirmPassword')?.value;
-    if(!password) return null;
-    return password !== confirmPassword ? {confirmPasswordMatchError: true} : null
+  navigateToCurrentUser() {
+    this.router.navigate(['..', this.user.id], {relativeTo: this.route}).then();
   }
 
-  onSave() {
-    this.updateUser(this.user);
-    console.log(this);
-  }
-
-  getRole(type: UserType): UserRole {
-    if (type === 'Parent' || type === 'Teacher') return 'Admin';
-    return 'User';
+  notFoundRedirect() {
+    this.router.navigate(['/', 'not-found'], {replaceUrl: true}).then();
   }
 }
