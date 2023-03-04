@@ -32,6 +32,11 @@ import {ResultComponent} from './paper/components/result/result.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {DeleteConfirmation} from './dialog/delete-confirmation-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {EditUserComponent} from './user/components/edit-user/edit-user.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
+import {RadioButtonModule} from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     NotFoundComponent,
     StarsComponent,
     TimeFormatPipe,
-    DeleteConfirmation
+    DeleteConfirmation,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +75,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatMenuModule,
     MatListModule,
     MatSidenavModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule,
+    InputTextModule,
+    PasswordModule,
+    RadioButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

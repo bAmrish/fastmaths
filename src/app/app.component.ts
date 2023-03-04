@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {StorageService} from './storage/storage.service';
 import {MatSidenav} from '@angular/material/sidenav';
+import {PrimeNGConfig} from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent {
     {text: 'Create Test', command: ['paper', 'config', 'new']},
   ]
 
-  constructor(storageService: StorageService) {
+  constructor(storageService: StorageService, private primeConfig: PrimeNGConfig) {
+    this.primeConfig.ripple = true;
     storageService.initialize();
   }
 

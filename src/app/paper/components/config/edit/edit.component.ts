@@ -6,8 +6,7 @@ import {Operator} from '../../../models/operator.type';
 import {UtilService} from '../../../services/util.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Difficulty, DifficultyValues} from '../../../models/paper-difficulty';
-
-type FormType = 'New' | 'Edit' | 'Error'
+import {FormType} from '../../../../common/models/form-type';
 
 const defaultConfig: PaperConfig = {
   id: '',

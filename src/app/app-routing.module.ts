@@ -6,6 +6,7 @@ import {NewPaperComponent} from './paper/components/new/new.component';
 import {NotFoundComponent} from './NotFoundComponent/not-found.component';
 import {ConfigsComponent} from './paper/components/config/configs.component';
 import {PapersComponent} from './paper/components/papers.component';
+import {EditUserComponent} from './user/components/edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,15 @@ const routes: Routes = [
           }
         ]
       },
+    ]
+  },
+  {
+    path: 'user',
+    children: [
+      {
+        path: ':id',
+        component: EditUserComponent
+      }
     ]
   },
   {
