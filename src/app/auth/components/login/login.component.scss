@@ -1,0 +1,38 @@
+.login-container {
+  max-width: 480px;
+  display: flex;
+  margin: auto;
+}
+
+mat-card-content {
+  padding-top: 20px;
+}
+
+.login-title {
+  font-size: 1.75rem;
+  & mat-icon{
+    margin-right: 20px;
+    position: relative;
+    top: 10px;
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color: #3f51b5;
+  }
+}
+
+.login-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.actions {
+  display: flex;
+  margin-top:20px;
+  justify-content: flex-end;
+}
+
+.login-error {
+  align-self: center;
+}

@@ -1,0 +1,33 @@
+<mat-card class="login-container">
+  <mat-card-header>
+    <mat-card-title class="login-title">
+      Login
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="login-fields">
+        <p-message *ngIf="loginError" severity="error" class="login-error p-error"
+                   text="Invalid username or password.">
+        </p-message>
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" type="text" pInputText formControlName="username"
+            [ngClass]="{error: userNameError}">
+          <small *ngIf="userNameError" class="error">Username is required</small>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" pInputText formControlName="password"
+            [ngClass]="{error: passwordError}">
+          <small *ngIf="passwordError" class="error">Password is required is required</small>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button pButton type="submit">Login</button>
+        <a class="p-button-text" pButton [routerLink]="['/', 'user', 'new']"> Sign Up </a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

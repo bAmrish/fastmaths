@@ -86,3 +86,12 @@ a.logo-link {
   justify-content: center;
   text-align: center;
 }
+.menu-button {
+  background-color: #3f51b5;
+  border-color: #3f51b5;
+}
+
+.menu-button:hover {
+  background-color: rgb(78, 93, 179);
+  border-color: #3f51b5;
+}

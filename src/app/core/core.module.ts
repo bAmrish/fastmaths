@@ -9,6 +9,8 @@ import {CommonModule as AppCommonModule} from '../common/common.module';
 import {CommonModule} from '@angular/common';
 import {MessagesModule} from 'primeng/messages';
 import {SharedModule} from 'primeng/api';
+import {ButtonModule} from 'primeng/button';
+import {MenuModule} from 'primeng/menu';
 
 const components = [
   HeaderComponent,
@@ -32,6 +34,8 @@ const components = [
     MatIconModule,
     MessagesModule,
     SharedModule,
+    ButtonModule,
+    MenuModule,
   ],
   exports: [...components]
 })

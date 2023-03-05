@@ -96,6 +96,18 @@ export class StorageService {
     return this.users[id] ? this.users[id] : null
   }
 
+  getUserByUsername(username: string): User | null {
+    for (let id in this.users) {
+      if (this.users.hasOwnProperty(id)) {
+        const user = this.users[id];
+        if (user.username === username) {
+          return user
+        }
+      }
+    }
+    return null;
+  }
+
   getAllUsers(): User[] {
     const users: User[] = [];
     for (let key in this.users) {

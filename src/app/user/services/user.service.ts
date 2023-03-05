@@ -27,4 +27,11 @@ export class UserService {
     return user;
   }
 
+  login(username: string, password: string): User | null {
+    const user = this.storage.getUserByUsername(username);
+    if (!user) return null;
+
+    return user.password === this.hash.hex(password) ? user : null;
+  }
+
 }

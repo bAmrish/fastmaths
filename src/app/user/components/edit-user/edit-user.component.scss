@@ -26,30 +26,3 @@
     width: 100px;
   }
 }
-
-// TODO: move to global styles.
-.field-group {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-
-  label {
-    margin-bottom: 5px;
-  }
-  small.error {
-    color: #f44336;
-    margin-top: 5px;
-  }
-
-  input.error {
-    border-color: #f44336;
-  }
-}
-

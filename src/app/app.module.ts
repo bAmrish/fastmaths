@@ -10,6 +10,7 @@ import {PaperModule} from './paper/paper.module';
 import {UserModule} from './user/user.module';
 import {CoreModule} from './core/core.module';
 import {CommonModule} from '@angular/common';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import {CommonModule} from '@angular/common';
     CoreModule,
     CommonModule,
     UserModule,
+    AuthModule,
     PaperModule,
     AppRoutingModule,
 

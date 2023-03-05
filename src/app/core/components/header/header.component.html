@@ -9,20 +9,21 @@
       {{title}}
     </a>
     <span class="header-spacer"></span>
-    <div class="nav-menu" >
+    <div class="nav-menu">
       <a class="nav-menu-item"
          *ngFor="let link of routerLinks"
          [routerLink]="link.command"
          [routerLinkActiveOptions]="{exact: true}"
-         routerLinkActive="active" >
+         routerLinkActive="active">
         {{link.text}}
       </a>
     </div>
     <span class="header-spacer"></span>
-    <a mat-button routerLink="/user/new">
-      <mat-icon>assignment_ind</mat-icon>
-      <span class="username">Admin</span>
-    </a>
+
+    <ng-template [ngIf]="loggedInUser">
+      <button class="menu-button" type="button" pButton icon="pi pi-user" (click)="menu.toggle($event)"></button>
+      <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
+    </ng-template>
 
   </mat-toolbar>
 

@@ -7,10 +7,17 @@ import {NotFoundComponent} from './core/components/not-found/not-found.component
 import {ConfigsComponent} from './paper/components/config/configs.component';
 import {PapersComponent} from './paper/components/papers.component';
 import {EditUserComponent} from './user/components/edit-user/edit-user.component';
+import {LoginComponent} from './auth/components/login/login.component';
+import {authGuard} from './auth/services/auth.guard';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'paper',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
