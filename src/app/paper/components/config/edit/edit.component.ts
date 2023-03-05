@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {PaperConfig} from '../../../models/paper-config.interface';
-import {StorageService} from '../../../../storage/storage.service';
+import {StorageService} from '../../../../core/services/storage.service';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {Operator} from '../../../models/operator.type';
-import {UtilService} from '../../../services/util.service';
+import {UtilService} from '../../../../common/services/util.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Difficulty, DifficultyValues} from '../../../models/paper-difficulty';
 import {FormType} from '../../../../common/models/form-type';

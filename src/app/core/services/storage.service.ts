@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {PaperConfig} from '../paper/models/paper-config.interface';
-import {Paper} from '../paper/models/paper.interface';
-import {User} from '../user/models/user.interface';
+import {PaperConfig} from '../../paper/models/paper-config.interface';
+import {Paper} from '../../paper/models/paper.interface';
+import {User} from '../../user/models/user.interface';
 
 @Injectable({providedIn: 'root'})
 export class StorageService {

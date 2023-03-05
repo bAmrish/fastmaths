@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PaperService} from '../../services/paper.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {StorageService} from '../../../storage/storage.service';
+import {StorageService} from '../../../core/services/storage.service';
 import {PaperConfig} from '../../models/paper-config.interface';
 
 @Component({

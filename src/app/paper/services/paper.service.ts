@@ -1,9 +1,9 @@
 import {Question} from '../models/question.interface';
-import {UtilService} from './util.service';
+import {UtilService} from '../../common/services/util.service';
 import {Injectable} from '@angular/core';
 import {PaperConfig} from '../models/paper-config.interface';
 import {Paper} from '../models/paper.interface';
-import {StorageService} from '../../storage/storage.service';
+import {StorageService} from '../../core/services/storage.service';
 import {Difficulty} from '../models/paper-difficulty';
 
 @Injectable({providedIn: 'root'})

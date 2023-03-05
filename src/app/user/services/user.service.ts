@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {StorageService} from '../../storage/storage.service';
+import {StorageService} from '../../core/services/storage.service';
 import {User} from '../models/user.interface';
-import {UtilService} from '../../paper/services/util.service';
+import {UtilService} from '../../common/services/util.service';
 import Hashes from 'jshashes';
 
 @Injectable({providedIn: 'root'})

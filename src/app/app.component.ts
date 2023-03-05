@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {StorageService} from './storage/storage.service';
+import {StorageService} from './core/services/storage.service';
 import {MatSidenav} from '@angular/material/sidenav';
 import {PrimeNGConfig} from 'primeng/api';
 

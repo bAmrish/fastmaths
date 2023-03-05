@@ -3,7 +3,7 @@ import {PaperService} from '../services/paper.service';
 import {Paper} from '../models/paper.interface';
 import formatRelative from 'date-fns/formatRelative';
 import {MatDialog} from '@angular/material/dialog';
-import {DeleteConfirmation} from '../../dialog/delete-confirmation-dialog.component';
+import {DeleteConfirmation} from '../../common/components/dialog/delete-confirmation-dialog.component';
 
 @Component({
   selector: 'app-papers',

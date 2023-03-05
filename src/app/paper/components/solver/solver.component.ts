@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {TimerComponent} from '../../../timer/timer.component';
+import {TimerComponent} from '../../../common/components/timer/timer.component';
 import {PaperService} from '../../services/paper.service';
 import {Operator} from '../../models/operator.type';
 import {ActivatedRoute, Router} from '@angular/router';
-import {StorageService} from '../../../storage/storage.service';
+import {StorageService} from '../../../core/services/storage.service';
 import {Paper} from '../../models/paper.interface';
 import formatRelative from 'date-fns/formatRelative';
 
