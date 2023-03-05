@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {PaperConfig} from '../../paper/models/paper-config.interface';
 import {Paper} from '../../paper/models/paper.interface';
 import {User} from '../../user/models/user.interface';
+import {Principal} from '../../auth/models/principal.interface';
 
 @Injectable({providedIn: 'root'})
 export class StorageService {
@@ -130,5 +131,21 @@ export class StorageService {
 
   private saveUsers() {
     localStorage.setItem('users', JSON.stringify(this.users));
+  }
+
+  // ---- Principal Object Methods ----
+  savePrincipal(principal: Principal) {
+    const principalString = JSON.stringify(principal);
+    localStorage.setItem('principal', principalString);
+  }
+
+  removePrincipal() {
+    localStorage.removeItem('principal');
+  }
+
+  getPrincipal(): Principal | null {
+    const principalString = localStorage.getItem('principal');
+    if (!principalString) return null;
+    return JSON.parse(principalString) as Principal;
   }
 }

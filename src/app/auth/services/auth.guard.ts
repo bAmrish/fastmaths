@@ -9,8 +9,7 @@ export const authGuard = (
 ) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-  // console.log(next);
-  console.log(state.url);
+
   if(!authService.isLoggedIn()) {
     const encodedURL = encodeURI(state.url);
     return router.parseUrl(`/login?l=${encodedURL}`);

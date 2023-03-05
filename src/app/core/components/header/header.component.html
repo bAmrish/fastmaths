@@ -1,23 +1,29 @@
 <header>
   <mat-toolbar color="primary">
-    <button class="menu" mat-icon-button (click)="onMenuClicked()">
-      <mat-icon>menu</mat-icon>
-    </button>
+    <ng-template [ngIf]="loggedInUser">
+      <button class="menu" mat-icon-button (click)="onMenuClicked()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </ng-template>
 
     <a class="logo-link" routerLink="/">
       <img class="logo-image" src="../../../../assets/logo/fast-maths-light.png" alt="Fast Math Logo Image"/>
       {{title}}
     </a>
     <span class="header-spacer"></span>
-    <div class="nav-menu">
-      <a class="nav-menu-item"
-         *ngFor="let link of routerLinks"
-         [routerLink]="link.command"
-         [routerLinkActiveOptions]="{exact: true}"
-         routerLinkActive="active">
-        {{link.text}}
-      </a>
-    </div>
+
+    <ng-template [ngIf]="loggedInUser">
+      <div class="nav-menu">
+        <a class="nav-menu-item"
+           *ngFor="let link of routerLinks"
+           [routerLink]="link.command"
+           [routerLinkActiveOptions]="{exact: true}"
+           routerLinkActive="active">
+          {{link.text}}
+        </a>
+      </div>
+    </ng-template>
+
     <span class="header-spacer"></span>
 
     <ng-template [ngIf]="loggedInUser">

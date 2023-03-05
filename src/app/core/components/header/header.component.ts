@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {AuthService} from '../../../auth/services/auth.service';
 import {User} from '../../../user/models/user.interface';
 import {MenuItem} from 'primeng/api';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent {
 
   menuItems: MenuItem[] = [
     {label: 'My Profile', url: '/user', icon: 'pi pi-user-edit'},
-    {label: 'Logout', url: '/logout', icon: 'pi pi-sign-out'},
+    {label: 'Logout', command: () => {this.logout();} , icon: 'pi pi-sign-out'},
   ];
 
   routerLinks: { text: string, command: string[] }[] = [
@@ -24,7 +25,7 @@ export class HeaderComponent {
   ]
   @Output() menuClicked = new EventEmitter<void>();
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.authService.getLoggedInUser().subscribe(user => {
       if(user){
         this.menuItems[0].url = `/user/${user?.id}`;
@@ -35,5 +36,10 @@ export class HeaderComponent {
 
   onMenuClicked() {
     this.menuClicked.emit();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']).then();
   }
 }
