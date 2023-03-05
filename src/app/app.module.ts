@@ -2,88 +2,32 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TimerComponent} from './common/components/timer/timer.component';
 import {MatCardModule} from '@angular/material/card';
-import {SolverComponent} from './paper/components/solver/solver.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {EditConfigComponent} from './paper/components/config/edit/edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
-import {NewPaperComponent} from './paper/components/new/new.component';
-import {NotFoundComponent} from './core/components/not-found/not-found.component';
-import {ConfigsComponent} from './paper/components/config/configs.component';
-import {MatTableModule} from '@angular/material/table';
-import {StarsComponent} from './common/components/stars/stars.component';
-import {MatChipsModule} from '@angular/material/chips';
-import {TimeFormatPipe} from './common/pipes/time-format.pipe';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatListModule} from '@angular/material/list';
-import {HeaderComponent} from './core/components/header/header.component';
-import {PapersComponent} from './paper/components/papers.component';
-import {ResultComponent} from './paper/components/result/result.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {DeleteConfirmation} from './common/components/dialog/delete-confirmation-dialog.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {EditUserComponent} from './user/components/edit-user/edit-user.component';
-import {MatRadioModule} from '@angular/material/radio';
-import {InputTextModule} from 'primeng/inputtext';
-import {PasswordModule} from 'primeng/password';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import {PaperModule} from './paper/paper.module';
+import {UserModule} from './user/user.module';
+import {CoreModule} from './core/core.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    TimerComponent,
-    PapersComponent,
-    SolverComponent,
-    ResultComponent,
-    EditConfigComponent,
-    ConfigsComponent,
-    NewPaperComponent,
-    NotFoundComponent,
-    StarsComponent,
-    TimeFormatPipe,
-    DeleteConfirmation,
-    EditUserComponent
-  ],
+  declarations: [AppComponent],
   imports: [
+    //Core Angular Modules
     BrowserModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressBarModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatButtonToggleModule,
     BrowserAnimationsModule,
+
+    // Other App Modules
+    CoreModule,
+    CommonModule,
+    UserModule,
+    PaperModule,
     AppRoutingModule,
-    MatTableModule,
-    MatChipsModule,
-    MatSliderModule,
-    MatExpansionModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatListModule,
-    MatSidenavModule,
-    MatDialogModule,
-    MatRadioModule,
-    InputTextModule,
-    PasswordModule,
-    RadioButtonModule,
-    MessagesModule,
-    MessageModule
+
+    //Material UI Modules
+    MatCardModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
