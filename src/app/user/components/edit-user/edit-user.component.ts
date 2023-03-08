@@ -13,6 +13,8 @@ const defaultUser: User = {
   password: '',
   type: 'Student',
   role: 'User',
+  configs: {},
+  papers: {},
   createdOn: new Date(),
   modifiedOn: new Date()
 }
@@ -28,7 +30,6 @@ export class EditUserComponent implements OnInit {
   userForm: FormGroup;
   formType: FormType;
   types: UserType[];
-  roles: UserRole[];
   userNameShort = false;
   userNameRequired = false;
   lastNameRequired = false;
@@ -84,7 +85,7 @@ export class EditUserComponent implements OnInit {
   }
 
   setupForm(user: User) {
-    //Do this first before you do anything else with the userform.
+    //Do this first before you do anything else with the user form.
     this.userForm.patchValue(user);
 
     if (this.formType == 'Edit') {
@@ -123,8 +124,11 @@ export class EditUserComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    const password = this.userForm.get('password')?.value;
+
     this.updateUser(this.user);
+
+    const password = this.userForm.get('password')?.value;
+
     if (this.formType === 'New') {
       this.user = this.userService.newUser(this.user, password);
       this.navigateToCurrentUser();

@@ -18,8 +18,7 @@ export class AuthService {
 
   login(username: string, password: string): boolean {
     const user = this.userService.login(username, password);
-    this._login(user);
-
+    this._login(user?.id || null);
     return this.loggedInUser !== null;
   }
 
@@ -28,9 +27,10 @@ export class AuthService {
     if (!principal) return;
 
     const diffInSeconds = dateDiff(new Date(principal.expiry), new Date());
-    if (diffInSeconds > 0) {
-      this._login(principal.user);
-    }
+    if (diffInSeconds <= 0) return;
+
+    this._login(principal.userId);
+
   }
 
   getLoggedInUser(): Observable<User | null> {
@@ -41,8 +41,11 @@ export class AuthService {
     return this.loggedInUser !== null;
   }
 
-  private _login(user: User | null) {
+  private _login(userId: string | null) {
+    this.storage.initializeUser(userId);
+    const user = this.storage.getUser(userId || '');
     this.loggedInUser = user;
+
     if (user != null) {
       this.createPrincipal(user);
     }
@@ -51,13 +54,14 @@ export class AuthService {
 
   private createPrincipal(user: User) {
     const expiry = dateAdd(new Date(), {minutes: 30})
-    this.principal = {user, expiry}
+    this.principal = {userId: user.id, expiry}
     this.storage.savePrincipal(this.principal);
   }
 
   logout() {
     this.loggedInUser = null;
     this.storage.removePrincipal();
+    this.storage.resetUser();
     this.user.next(null);
   }
 

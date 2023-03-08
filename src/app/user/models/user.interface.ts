@@ -1,3 +1,6 @@
+import {PaperConfig} from '../../paper/models/paper-config.interface';
+import {Paper} from '../../paper/models/paper.interface';
+
 export const UserTypeValues: ('Student' | 'Parent' | 'Teacher' | 'Internal')[]
   = ['Student', 'Parent', 'Teacher', 'Internal'];
 export type UserType = typeof UserTypeValues[number];
@@ -14,6 +17,8 @@ export interface User {
   password: string;
   type: UserType;
   role: UserRole;
+  configs: { [key: string]: PaperConfig };
+  papers: { [key: string]: Paper };
   createdOn: Date;
   modifiedOn: Date;
 }

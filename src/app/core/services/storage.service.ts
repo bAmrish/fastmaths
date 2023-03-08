@@ -3,20 +3,40 @@ import {PaperConfig} from '../../paper/models/paper-config.interface';
 import {Paper} from '../../paper/models/paper.interface';
 import {User} from '../../user/models/user.interface';
 import {Principal} from '../../auth/models/principal.interface';
+import {UtilService as u} from '../../common/services/util.service';
 
 @Injectable({providedIn: 'root'})
 export class StorageService {
+  users: { [key: string]: User } = {};
+  user: User | null;
   configs: { [key: string]: PaperConfig } = {};
   papers: { [key: string]: Paper } = {};
-  users: { [key: string]: User } = {};
 
   initialize() {
-    const configs = localStorage.getItem('configs');
-    const papers = localStorage.getItem('papers');
     const users = localStorage.getItem('users');
-    this.configs = configs ? JSON.parse(configs) as { [key: string]: PaperConfig } : {};
-    this.papers = papers ? JSON.parse(papers) as { [key: string]: Paper } : {};
-    this.users = users ? JSON.parse(users) as { [key: string]: User } : {};
+    if (!users) {
+      this.users = {};
+      this.saveUsers();
+    } else {
+      this.users = JSON.parse(users) as { [key: string]: User };
+    }
+  }
+
+  initializeUser(userId: string | null) {
+    this.user = this.getUser(userId || '');
+    if (!this.user) {
+      this.resetUser()
+      return;
+    }
+
+    this.configs = this.user.configs;
+    this.papers = this.user.papers;
+  }
+
+  resetUser() {
+    this.user = null;
+    this.configs = {}
+    this.papers = {}
   }
 
   // ---- Config Methods -----
@@ -26,7 +46,9 @@ export class StorageService {
   }
 
   getConfig(id: string): PaperConfig | null {
-    return this.configs[id] ? this.configs[id] : null
+    const config = this.configs[id];
+    if (!config) return null
+    return u.clone(config);
   }
 
   getAllConfigs(): PaperConfig[] {
@@ -36,7 +58,7 @@ export class StorageService {
         configs.push(this.configs[key])
       }
     }
-    return configs;
+    return u.clone(configs);
   }
 
   deleteConfig(configId: string): boolean {
@@ -50,7 +72,12 @@ export class StorageService {
   }
 
   private saveConfigs() {
-    localStorage.setItem('configs', JSON.stringify(this.configs));
+    if (!this.user) {
+      console.warn('No user found to save the config.');
+      return
+    }
+    this.user.configs = this.configs
+    this.saveUser(this.user);
   }
 
   // ---- Paper Methods -----
@@ -60,7 +87,9 @@ export class StorageService {
   }
 
   getPaper(id: string): Paper | null {
-    return this.papers[id] ? this.papers[id] : null
+    const paper = this.papers[id];
+    if (!paper) return null;
+    return u.clone(paper);
   }
 
   getAllPapers(): Paper[] {
@@ -70,7 +99,7 @@ export class StorageService {
         papers.push(this.papers[key])
       }
     }
-    return papers;
+    return u.clone(papers);
   }
 
   deletePaper(paperId: string): boolean {
@@ -84,17 +113,25 @@ export class StorageService {
   }
 
   private savePapers() {
-    localStorage.setItem('papers', JSON.stringify(this.papers));
+    if (!this.user) {
+      console.warn('No user found to save papers.');
+      return
+    }
+    this.user.papers = this.papers;
+    this.saveUser(this.user);
   }
 
   // ---- User Methods -----
   saveUser(user: User) {
+    if (!user?.id) return;
     this.users[user.id] = user;
     this.saveUsers();
   }
 
   getUser(id: string): User | null {
-    return this.users[id] ? this.users[id] : null
+    const user = this.users[id];
+    if (!user) return null;
+    return u.clone(user);
   }
 
   getUserByUsername(username: string): User | null {
@@ -102,7 +139,7 @@ export class StorageService {
       if (this.users.hasOwnProperty(id)) {
         const user = this.users[id];
         if (user.username === username) {
-          return user
+          return u.clone(user);
         }
       }
     }

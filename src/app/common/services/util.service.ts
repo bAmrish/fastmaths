@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
-@Injectable({providedIn: "root"})
+@Injectable({providedIn: 'root'})
 export class UtilService {
   /**
    * UUID generation is a complex topic. The reason I chose the implementation
@@ -20,5 +20,22 @@ export class UtilService {
       max = temp;
     }
     return min + Math.floor(Math.random() * (max + 1 - min));
+  }
+
+  // Below method creates a deep clone method passed in.
+  // Taken from https://javascript.plainenglish.io/deep-clone-an-object-and-preserve-its-type-with-typescript-d488c35e5574
+  static clone<T>(source: T): T {
+    return Array.isArray(source) ? source.map(item => this.clone(item)) as T
+      : source instanceof Date ? new Date(source.getTime()) as T
+        : (source && typeof source === 'object') ?
+          Object.getOwnPropertyNames(source)
+            .reduce((o: T, prop: string) => {
+                Object.defineProperty(o, prop, Object.getOwnPropertyDescriptor(source, prop)!);
+                //@ts-ignore
+                o[prop] = this.clone((source as { [key: string]: any })[prop]);
+                return o;
+              }, Object.create(Object.getPrototypeOf(source))
+            ) as T
+          : source as T;
   }
 }
