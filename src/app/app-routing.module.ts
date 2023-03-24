@@ -50,6 +50,11 @@ const routes: Routes = [
     path: 'user',
     children: [
       {
+        path: 'new',
+        component: EditUserComponent
+      },
+      {
+        // canActivate: [authGuard],
         path: ':id',
         component: EditUserComponent
       }

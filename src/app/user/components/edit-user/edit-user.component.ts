@@ -47,6 +47,12 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.route.snapshot?.url[0]?.path === 'new') {
+      this.formType = 'New';
+      this.user = {...defaultUser};
+      this.setupForm(this.user);
+      return;
+    }
     this.route.paramMap.subscribe(params => {
       const id: string = params.get('id') || '';
       if (id === '') {
@@ -54,20 +60,17 @@ export class EditUserComponent implements OnInit {
         this.notFoundRedirect();
         return;
       }
-      if (id === 'new') {
-        this.formType = 'New';
-        this.user = {...defaultUser};
-      } else {
-        this.formType = 'Edit';
-        const user = this.userService.getUser(id);
-        if (!user) {
-          console.warn(`unable to find user with id ${id}`)
-          this.formType = 'Error'
-          this.notFoundRedirect();
-          return
-        }
-        this.user = user;
+
+      this.formType = 'Edit';
+      const user = this.userService.getUser(id);
+      if (!user) {
+        console.warn(`unable to find user with id ${id}`)
+        this.formType = 'Error'
+        this.notFoundRedirect();
+        return
       }
+      this.user = user;
+
       this.setupForm(this.user);
     })
   }
